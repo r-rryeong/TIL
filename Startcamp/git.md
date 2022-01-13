@@ -1,4 +1,4 @@
-### Git
+### Git 기초
 
 
 
@@ -77,14 +77,32 @@ Gitlab: 과제제출
 
 
 
-* Git 구조
+* git의 기본적인 구조
 
-​	working directory: 내컴퓨터
+​	실제 폴더
+
+​	`git init`
+
+​	working directory: 내컴퓨터(대기실)
 
 ​	 `git add`
 
-​	staging area: 확인/검수
+​	staging area: 확인/검수(입장)
 
 ​	`git commit`
 
 ​	commits: 저장소
+
+​	`git status`: working directory와  staging area의 상태를 확인하는 명령어
+
+​	`git log`: commit의 상태를 확인
+
+![image-20220113160310457](git.assets/image-20220113160310457.png)
+
+* 상태
+
+​	untracked: 처음으로 관리되는 대상(빨간색)
+
+​	tracked: 관리되고 있는 대상
+
+​	new: 처음 관리(초록색)
