@@ -2,8 +2,17 @@ import json
 
 
 def turn(temperatures):
-    pass
-    # 여기에 코드를 작성합니다.
+    dic_max = []
+    dic_min = []
+    for i in temperatures:
+        for j in temperatures[i]:
+            if j == 0:
+                dic_max += j
+            else:
+                dic_min += j
+    temp = { 'maximum':dic_max, 'minimum':dic_min}
+    return temp
+
 
 
 # 아래의 코드는 수정하지 않습니다.
