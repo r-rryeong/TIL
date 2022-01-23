@@ -1,6 +1,11 @@
 def is_id_valid(user_data):
-    pass
-    # 여기에 코드를 작성합니다.
+    if user_data.get('id'):
+        if user_data.get('id')[-1] in map(str, range(0,10)):
+            return True
+        else:
+            return False
+    else:
+        return False
 
 
 # 아래의 코드는 수정하지 않습니다.

@@ -1,6 +1,15 @@
+from asyncio import format_helpers
+
+
 def is_user_data_valid(user_data):
-    pass
-    # 여기에 코드를 작성합니다.
+    for i in user_data.values() :
+        if i :
+            continue
+        else:
+            return False
+    return True
+    
+    
 
 
 # 아래의 코드는 수정하지 않습니다.

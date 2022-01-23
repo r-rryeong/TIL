@@ -5,11 +5,8 @@ def turn(temperatures):
     dic_max = []
     dic_min = []
     for i in temperatures:
-        for j in temperatures[i]:
-            if j == 0:
-                dic_max += j
-            else:
-                dic_min += j
+        dic_max += [max(i)]
+        dic_min += [min(i)]
     temp = { 'maximum':dic_max, 'minimum':dic_min}
     return temp
 
