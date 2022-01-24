@@ -1,6 +1,6 @@
 while True:
-    A, B = map(int, input().split())
-    if(A == False and B == False):
-        break
-    else:
-        print(A+B)
+    try:
+        A, B = map(int, input().split())
+        print(A + B)
+    except:     # error가 발생한 경우
+        break    # while문을 빠져나간다
