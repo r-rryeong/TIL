@@ -1,4 +1,4 @@
-n = input()
-num = map(int, input().split())
+n = int(input())
+num = list(map(int, input().split()))
 
-print(min(num), max(num), end = '')
+print(min(num), max(num))
