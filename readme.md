@@ -1,6 +1,6 @@
 # **🌱TIL (Today I Learned)**
 
-### **git**
+### 	Git
 
 1. [CLI사용하기](./Startcamp/CLI.md)
 1. [마크다운사용](Startcamp/마크다운.md)
