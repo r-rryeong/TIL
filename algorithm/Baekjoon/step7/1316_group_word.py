@@ -1,4 +1,6 @@
-n = int(input())
+N = int(input())
 
-for i in range(n):
-    
+group = 0
+for n in range(N):
+    print(input())
+    if 
