@@ -8,3 +8,4 @@ for n in range(N):
             group -= 1    # 이미 나왔던 문자가 발견되면 단어의 개수에서 1 차감
             break
 print(group)
+
