@@ -22,7 +22,7 @@
 
 ### HTML 기본구조
 
-> alt + b 키로 페이지 열기
+> alt + b 키로 html 페이지 열기
 
 - html : 문서의 최상위 요소
 
@@ -133,11 +133,11 @@
 
     `header`
 
-    `nav`: 상단 메뉴
+    `nav`: 상단 메뉴(내비게이션)
 
     `aside`: 사이드에 위치한 공간
 
-    `section`: 문서의 일반적인 부분, 컨테느의 그룹을 표현
+    `section`: 문서의 일반적인 부분, 컨텐츠의 그룹을 표현
 
     `article`: 문서, 페이지, 사이트 안에서 독립적으로 구분되는 영역
 
@@ -175,32 +175,40 @@
 
   `<p></p>`: 하나의 문단
 
-  `<hr>`: 
+  `<hr>`: 수평선
 
-  `<ol></ol>`:
+  `<ol></ol>`: 순서가 있는 리스트
 
-  `<ul></ul>`:
+  `<ul></ul>`: 순서가 없는 리스트
 
-  `<pre></pre>`:
+  `<pre></pre>`: HTML에 작성한 내용을 그대로 표현
 
-  `<blockquote></blockquote>`:
+  `<blockquote></blockquote>`: 텍스트가 긴 인용문, 주로 들여쓰기를 한 것으로 표현됨
 
-  `<div></div>`:
+  `<div></div>`: 의미없는 블록 레벨 컨테이너
+
+  
 
 - table
 
   table의 각 영역을 명시하기 위해 `<thead>` `<tbody>` `<tfoot>` 요소를 활용
 
-  `tr`, `th`, `td`
+  `thead`: tr > th
 
-  - colspan, rowspan 속성을 활용하여 셀 병합
+  `tbody`: tr > td
+
+  `tfoot`: tr > td
+
+  `tr`로 가로줄을 구성하고 내부에는`th` 혹은 `td`로 셀 구성
+
+  - `colspan`, `rowspan` 속성을 활용하여 셀 병합
   - `<caption>`을 통해 표 설명 또는 제목을 나타냄
 
 - form(Django 굉장히 자주 사용)
 
-  - `<form>`은 데이터를 서버에 제출하기 위한 영역
+  `<form>`은 데이터를 서버에 제출하기 위한 영역
 
-  - 기본속성
+  - `<form>` 기본속성
 
     **action**: form을 처리할 서버의 URL
 
@@ -215,7 +223,7 @@
 
   - 다양한 입력을 받을 수 있게끔 다양한 위젯이 제공됨
 
-  - 대표 속성
+  - `<input>`대표 속성
 
     name: form control에 적용되는 이름(이름/값 페어로 전송됨)
 
@@ -227,6 +235,39 @@
 
 - input label
   - label을 클릭하여 input 자체에 초점을 맞출 수 있음
+  - `<input>`에 id속성을, `<label>`에는 for 속성을 활용하여 상호 연관 시킴
+  
+- input 유형 - 일반
+
+  일반적으로 입력을 받기 위해 제공되며 타입별로 HTML 기본 검증 혹은 추가 속성을 활용할 수 있음
+
+  - text: 일반 텍스트 입력
+  - password: 입력 시 값이 보이지 않고 문자를 특수기호(*)로 표현
+  - email: 이메일 형식이 아닌 경우 form 제출 불가
+  - number: min, max, step 속성을 활용하여 숫자 범위 설정 가능
+  - file: accept 속성을 활용하여 파일 타입 지정 가능
+
+- input 유형 - 항목 중 선택
+
+  - 일반적으로 label을 사용하여 내용을 작성하여 항목 중 선택할 수 있는 input을 제공
+
+  - 동일 항목에 대해서는 name을 지정하고 선택된 항목에 대한 value를 지정해야함
+
+    `checkbox`: 다중 선택
+
+    `radio`: 단일 선택
+
+- input 유형 - 기타
+
+  - 다양한 종류의 input을 위한 picker를 제공
+
+    `color`: color picker
+
+    `data`: data picker
+
+  - hidden input을 활용하여 사용자가 입력을 받지 않고 서버에 전송되어야 하는 값을 설정
+
+    `hidden`: 사용자에게 보이지 않는 input
 
 
 
@@ -241,8 +282,8 @@
   - CSS 기본문법 ⭐
 
   ```
-  ht {    # 선택자(selector)
-  color: blue;   # 선언(Declaration)
+  h1 {    # 선택자(selector)
+  color: blue;
   font-size: 15px;   # 속성(property):값(value)
   }
   # 매 줄 끝에 세미콜론 작성!
@@ -250,10 +291,15 @@
 
   - 선택자를 통해 스타일을 지정할 HTML요소 선택
   - 중괄호 안에 속성과 값, 하나의 쌍으로 선언
+  - 속성(property)은 어떤 스타일 기능을 변경할지 결정, 값은 어떻게 스타일 기능을 변경할지 결정
+
+>선택자 연습 사이트
+>
+>https://flukeout.github.io/
 
 - CSS 정의 방법
 
-  - 인라인 : 해당 태그에 직접 style 속성 활용
+  - 인라인(inline) : 해당 태그에 직접 style 속성 활용
 
   - 내부 참조 : `<style></style>`태그 내부에 CSS 문법 적용
 
@@ -277,15 +323,25 @@
 
 - 선택자 유형⭐
   - 기본 선택자
+    - 전체 선택자, 요소 선택자
+    - 클래스 선택자, 아이디 선택자, 속성 선택자
   - 결합자
+    - 자손 결합자, 자식 결합자
+    - 일반 형제 결합자, 인접 형제 결합자
+  
   - 의사 클래스/요소(Pseudo Class)
+    - 링크, 동적 의사 클래스
+    - 구조적 의사 클래스, 기타 의사 클래스, 속성 선택자
+
+
+
 - 선택자 정리
-  - 요소 선택자
-  - 클래스 선택자
-  - id 선택자
+  - 요소 선택자: HTML 태그를 직접 선택
+  - 클래스 선택자: 마침표(.)로 시작되며, 해당 클래스가 적용된 항목을 선택
+  - id 선택자: #문자로 시작하며, 해당 아이디가 적용된 항목을 선택, 단일 id를 사용하는 것을 권장
   - 전체 선택자
 - CSS 적용 우선순위⭐
-  1. 중요도 : `!important` 0순위
+  1. 중요도 : `!important` 0순위 (사용시 주의)
   2. 우선순위 : 인라인 > id(#) > class(.), (속성, pseudo-class) > 요소, pseudo-element > 전체(*)
   3. CSS 파일 로딩 순서 :  가장 마지막이 우선순위가 높다
 
@@ -297,11 +353,15 @@
 
   - 상속 되는 것 예시
 
-    Text 관련 요소
+    Text 관련 요소(font, color, text-align) 등
 
   - 상속 되지 않는 것 예시
 
-    Box model 관련 요소
+    Box model 관련 요소(width, height, margin, padding 등)
+    
+    position 관련 요소(position, top/right/bottom 등) 등
+
+> mdn에서 확인하기
 
 
 
@@ -327,9 +387,15 @@
 
   - rem(root)
 
+    **상속 영향 받지 않음**
+
     최상위 요소(html)의 사이즈를 기준으로 배수 단위를 가짐
 
   - viewport
+
+    웹 페이지를 방문한 유저에게 바로 보이게 되는 웹 컨텐츠 영역(디바이스 화면), viewport를 기준으로 상대적인 사이즈 결정
+
+    vw, vh, vmin, vmax
 
 - 색상 단위
 
@@ -339,15 +405,15 @@
 
   - RGB 색상
 
-    `#` + 16진수 표기법
+    `#` 16진수 표기법
 
     rgb() 함수형 표기법
 
   - HSL 색상
 
-    색상, 채도, 명도
+    색상, 채도, 명도를 통해 특정 색 표현
 
-  - a는 alpha 투명도
+  - a는 alpha(투명도)
 
 
 
@@ -377,7 +443,7 @@
 
 - CSS 원칙
 
-  모든 요소는 네모(박스모델)이고, 위에서 아래로, 좌에서 우로 쌓인다.(Normal Flow;기본흐름)
+  모든 HTML요소는 네모(박스모델)이고, 위에서 아래로, 좌에서 우로 쌓인다.(Normal Flow;기본흐름)
 
 - Box model
 
@@ -386,11 +452,19 @@
   - border: 테두리 영역
   - margin: 테두리 바깥의 외부 여백 배경색을 지정할 수 없다
 
-- Box-sizing⭐
+- **Box-sizing**⭐
+
+  - 기본적으로 모든 요소의 box-sizing은 content-box
+
+    padding을 제외한 순수 contents 영역만을 box로 지정
+
+  - 우리가 일반적으로 영역을 볼 때는 border까지의 너비를 100px로 보는 것을 원함 - 이 경우, box-sizing을 border-box로 설정
 
 
 
 ## CSS Display
+
+- display에 따라 크기와 배치가 달라진다.
 
 - 대표적으로 활용되는 display
 
@@ -407,12 +481,16 @@
     줄 바꿈이 일어나지 않는 행의 일부 요소
 
     content 너비만큼 가로 폭을 차지한다.
+    
+    width, height, margin-top, margin-bottom을 지정할 수 없다
+    
+    상하 여백은 line-height로 지정
 
 - 블록 레벨 요소와 인라인 레벨 요소
 
   - 대표적인 블록 레벨 요소
 
-    div
+    div / ul, ol, li / p / hr / form 등
 
   - 대표적인 인라인 레벨 요소(text 관련 요소)
 
@@ -420,10 +498,21 @@
 
 - 속성에 따른 수평 정렬
 
+  - margin-right:auto; / text-align:left;
+  - margin-left:auto; / text-align:right;
+  - margin-right:auto;margin-left:auto; / text-align:center;
+
 - display
 
   - display : inline-block
+  
+    block과 inline 레벨 요소의 특징을 모두 가짐
+  
   - display : none
+  
+    해당 요소를 화면에 표시하지 않고, 공간조차 부여되지 않음
+  
+    이와 비슷한 hidden은 해당 요소가 공간은 차지하나 화면에 표시되지 않음
 
 
 
@@ -437,14 +526,20 @@
 
     일반적인 요소의 배치 순서에 따름(좌측 상단)
 
-    부모 요소 내에서
+    부모 요소 내에서 배치될 때는 부모 요소의 위치를 기준으로 배치됨
 
-  - relative : 상대 위치(내자리 유지)⭐
+  - relative⭐
 
-  - absolute : 절대 위치(내자리x)⭐
+    : 상대 위치(내자리 유지), normal flow 유지
 
-  - fixed(고정 위치)   ex) 광고창
+  - absolute⭐
 
-  > mdn position 사이트
+    : 절대 위치(내자리x), normal flow 벗어남
 
+    static이 아닌 가장 가까이 있는 부모/조상 요소를 기준으로 이동(없는 경우 body)
+  
+  - fixed: 스크롤에서 항상 같은 곳에 위치   ex) 광고창
+  
+  > mdn position
+  
   
