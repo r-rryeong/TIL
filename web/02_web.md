@@ -141,6 +141,10 @@
 >
 > https://d2.naver.com/helloworld/8540176
 
+>flexbox 실습사이트
+>
+>https://flexboxfroggy.com/#ko
+
 
 
 ## Bootstrap
@@ -180,19 +184,18 @@
   - Column: 실제 컨텐츠를 포함하는 부분
   - Gutter: 칼럼과 칼럼 사이의 공간(사이 간격)
   - Container: Column들을 담고 있는 공간
-
 - Bootstrap Grid system은 flexbox로 제작됨
-- 12개의 column, 6개의 grid breakpoints !
+- 12개의 column, 6개의 grid breakpoints⭐(sm, md, lg, xl, xxl)
+- `row` 부모 요소 안에 `col`작성⭐
 
 
 
 class="container" - 좌우 공백 확보(가독성↑)
 
-⭐"row" - 부모요소 안에 "col" 작성
+⭐nesting: 부모의 영역을 12등분
 
-⭐breakpoints
+`offset`: 열을 오른쪽으로 이동
 
-⭐nesting: 부모의 영역을 12등분한다.
+(bootstrap쓰려면 head에 link 태그 작성, body끝에 script 태그 작성! 부트스트랩 사이트 참고)
 
-offset: 
-
+ctrl+alt+방향키 / alt+원하는곳클릭 : 한꺼번에 수정
