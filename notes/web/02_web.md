@@ -38,7 +38,7 @@
   
 - Clearing Float
 
-  - Float는 Normal Flow에서 벗어사 부동상태이므로 이후 요소에 대해 Float 속성이 적용되지 않도록 Clearing이 필수적임
+  - Float는 Normal Flow에서 벗어나 부동상태이므로 이후 요소에 대해 Float 속성이 적용되지 않도록 Clearing이 필수적임
   - `::after`: 선택한 요소의 맨 마지막 자식으로 가상 요소를 하나 생성
   - clear 속성 부여
 
@@ -53,13 +53,13 @@
 
 
 
-### Flexbox
+### ⭐Flexbox
 
 - **CSS Flexible Box Layout**
 
   - 행과 열 형태로 아이템들을 배치하는 1차원 레이아웃 모델
 
-  - 축⭐
+  - 축
 
     - main axis: 정렬 기본방향(기본값: row)
 
@@ -77,13 +77,7 @@
 
     - Flex Item(자식 요소)
 
-      컨테이너에 속해 있는 컨텐츠
-
-- Flexbox 축
-
-  - flex-direction : row
-
-  
+      컨테이너에 속해 있는 컨텐츠(박스)
 
 - 왜 Flexbox를 사용해야할까?
 
@@ -91,49 +85,67 @@
 
   수직정렬, 아이템의 너비와 높이 혹은 간격 동일하게 배치하는 것이 더 수월함
 
-- 활용 레이아웃
-
 - Flex 속성
 
   1. **배치 설정**
 
   - flex-direction
 
-    row, row-reverse, column, column-reverse
+    `row`, `row-reverse`, `column`, `column-reverse`
 
   - flex-wrap: 아이템이 컨테이너 밖으로 벗어나지 않도록 설정
 
-    wrap: 넘치면 그 다음 줄로 배치
+    `wrap`: 넘치면 그 다음 줄로 배치
 
-    nowrap: (기본값) 한줄에 배치
-  
-  - flex-flow: flex-direction과 flex-wrap의 shorthand(차례대로 작성)
-  
+    `nowrap`: (기본값) 한줄에 배치
+
+  - ⭐flex-flow: flex-direction과 flex-wrap의 shorthand(차례대로 작성)
+
+    ex) flex-flow: row nowrap;
+
+    
+
   2. **공간 나누기**
-  
-  - justify-content: main axis를 기준으로 공간 배분
-  
-    flex-start, flex-end, center, space-between, space-around(아이템을 둘러싼 영역을 균일하게 분배), space-evenly(전체 영역에서 아이템 간 간격을 균일하게 분배)
-  
-  - align-content: cross axis를 기준으로 공간 배분(아이템이 한줄로 배치되는 경우 확인할 수 없음)
-  
-    flex-start, flex-end, center, space-between, space-around, space-evenly
-  
-  3. **정렬**
-  
-  - align-items: 모든 아이템을 cross axis 기준으로 정렬
-  
-    stretch(컨테이너를 가득 채움), flex-start, flex-end, center, baseline
-  
-  - align-self: 개별 아이템을 Cross axis 기준으로 정렬
-  
-    stretch, flex-start, flex-end, center
 
-- Flex 기타 속성
+  - justify-content: main axis를 기준으로 공간 배분
+
+    `flex-start`, `flex-end`, `center`
+
+    `space-between`
+
+    `space-around`: 아이템을 둘러싼 영역을 균일하게 분배
+
+    `space-evenly`: 전체 영역에서 아이템 간 간격을 균일하게 분배
+
+  - align-content: cross axis를 기준으로 공간 배분(아이템이 한줄로 배치되는 경우 확인할 수 없음)
+
+    `flex-start`, `flex-end`, `center`
+    
+    `space-between`, `space-around`, `space-evenly`
+    
+    
+
+  3. **정렬**
+
+  - ⭐align-items: 모든 아이템을 cross axis 기준으로 정렬
+
+    `stretch`: 컨테이너를 가득 채움
+
+    `baseline`: 텍스트 baseline에 기준선을 맞춤
+
+    ![image-20220213175758344](02_web.assets/image-20220213175758344.png)
+
+  - align-self: 개별 아이템을 Cross axis 기준으로 정렬(컨테이너에 적용하는 것이 아니라 개별 아이템에 적용)
+
+    `stretch`
+    
+    `flex-start`, `flex-end`, `center`
+
+- ⭐Flex 기타 속성
 
   flex-grow: 남은 영역을 아이템에 분배
 
-  order: 배치 순서
+  order: 배치 순서(기본값은 0, 숫자가 클수록 우선순위 낮음)
 
   
 
@@ -147,9 +159,11 @@
 
 
 
-## Bootstrap
+## ⭐Bootstrap
 
 - spacing
+
+  브라우저 <html>의 root 글꼴 크기는 16px
 
   | m      | p       |
   | ------ | ------- |
@@ -177,7 +191,7 @@
 
 
 
-### ⭐Bootstrap Grid system(web design)
+### ⭐Bootstrap Grid system(web design)⭐
 
 - 요소들의 디자인과 배치에 도움을 주는 시스템
 - 기본요소

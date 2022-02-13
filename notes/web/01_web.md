@@ -8,11 +8,11 @@
 
 - Hyper Text
 
-  텍스트에 하이퍼링크가 포함
+  하이퍼링크를 통해 사용자가 한 문서에서 다른 문서로 즉시 접근할 수 있는 텍스트
 
 - Markup Language
 
-  태그 등을 이용하여 문서나 데이터의 구조를 명시하는 언어
+  태그 등을 이용하여 문서나 데이터의 구조를 명시하는 언어(HTML, Markdown)
 
 - 웹 페이지를 작성(구조화)하기 위한 언어
 
@@ -22,25 +22,27 @@
 
 ### HTML 기본구조
 
-> alt + b 키로 html 페이지 열기
+> alt + b 키로 페이지 열기
 
 - html : 문서의 최상위 요소
 
-- head : 문서 메타데이터 요소
+- head : 문서 메타데이터 요소(정보)
 
   문서 제목, 인코딩, 스타일, 외부 파일 로딩 등
 
   일반적으로 브라우저에 나타나지 않는 내용
 
-- body : 실제 화면 구성과 관련된 내용
+- body : 실제 화면 구성과 관련된 내용(화면 구성)
 
-```
-<!DOCTYPE html>   # 해당 문서가 html5로 구성되어 있음
+```html
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 
+</head>
 <body>
 
+</body>
 </html>
 ```
 
@@ -52,15 +54,17 @@
   - `<script>`: 스크립트 요소 (jave script 시간에 다시 학습)
   - `<style>`: CSS 직접 작성
 
-- DOM(Document Object Model) 트리 구조
+- DOM(Document Object Model) 트리
 
-  - body (부모요소)
-
-    - h1 (자식요소)
-
-    - ul (자식요소)
-
-      h1과 ul은 형제요소
+  ```html
+  <body>                  <!--부모 요소-->
+      <h1> 웹 문서 </h1>   <!--자식 요소-->
+      <ul>                <!--자식 요소-->
+          <li>HTML</li>
+          <li>CSS</li>
+      </ul>               <!--h1과 ul은 형제요소-->
+  </body>
+  ```
 
   - html은 2칸 띄워쓰기
 
@@ -68,22 +72,20 @@
 
   요소는 태그와 내용으로 구성되어 있다
 
-  ```
+  ```html
   <h1>contents</h1>
-  # 여는 태그와 닫는 태그
+  <!--여는 태그와 닫는 태그-->
   ```
-
-  - 태그는 컨텐츠(내용)를 감싸는 것으로 그 정보의 성격과 의미를 정의
 
   - 내용이 없는 태그들
 
-    (br, hr, img, input, link, meta)
+    br, hr, img, input, link, meta
 
   - 요소는 중첩될 수 있음
 
-  - 열림과 닫힘 태그의 쌍 구분할 것
+  - 열림과 닫힘 태그의 쌍 잘 확인할 것
 
-    오류를 반환하는 것이 아닌 그냥 레이아웃이 깨진 상태로 출력되기 때문에, 디버깅이 힘들어 질 수 있음
+    (오류를 반환하는 것이 아닌 그냥 레이아웃이 깨진 상태로 출력되기 때문에, 디버깅이 힘들어 질 수 있음)
 
 - 속성(attribute)
 
@@ -91,9 +93,9 @@
 
   속성명과 속성값으로 구성
 
-  ```
-  <a 속성명="속성값"></a>   # 하이퍼링크를 넣는 tag
-  # 쌍따옴표 사용!공백 No!
+  ```html
+  <a 속성명="속성값"></a>   <!--하이퍼링크를 넣는 tag-->
+  <!--쌍따옴표 사용, 공백 No!-->
   ```
 
   - 태그에 부가적인 정보를 설정할 수 있음
@@ -103,7 +105,7 @@
 
 - HTML Global Attribute
 
-  모든 HTML요소가 공통으로 사용할 수 있는 대표적인 속성
+  - 모든 HTML요소가 공통으로 사용할 수 있는 대표적인 속성
 
   `id`: 유일한 고유 식별자 지정 
 
@@ -113,21 +115,21 @@
 
   `data-*`: 사용자 정의 데이터를 저장
 
-  `style`: 해당 요소를 꾸밀 때
+  `style`: 해당 요소를 꾸밀 때, inline 스타일
 
   `title`: 요소에 대한 추가 정보 지정
 
   `tabindex`: 탭 순서
 
-  > mdn tabindex 사이트
+  > mdn tabindex 페이지
 
-- 시맨틱 태그(영역을 구분하기 위한 태그)
+- ⭐시맨틱 태그(영역을 구분하기 위한 태그)
 
   - HTML5에서 의미론적 요소를 담은 태그의 등장
 
     기존 영역을 의미하는 div태그를 대체하여 사용
 
-    구조화, 명시적 표현가능 --> 가독성 up, 유지보수 수월
+    구조화, 명시적 표현가능 --> 가독성↑, 유지보수 수월
 
   - 대표적인 태그 목록
 
@@ -144,22 +146,20 @@
     `footer`: 문서 전체나 섹션의 푸터(마지막 부분)
 
   - Non semantic 요소는 div, span 등이 있으며 h1, table 태그들도 시맨틱 태그로 볼 수 있음
+  
+  - 단순히 구역을 나누는 것 뿐만 아니라 '의미'를 가지는 태그들을 활용하기 위한 노력
 
 
 
 ### HTML 문서 구조화
 
-- 텍스트 요소
-
-  - a 태그
+- ⭐텍스트 요소(inline 요소; 한줄 중 일부를 차지)
 
   `<a></a>`: 하이퍼링크 생성
 
-  - b 태그(bold)
-
   `<b></b>`: 굵은 글씨 요소
 
-  `<strong></strong>`: 굵은 글씨 요소(의미적요소(굵게)가 추가된 시맨틱 태그)
+  `<strong></strong>`: 굵은 글씨 요소(의미적요소가 추가된 시맨틱 태그)
 
   `<i></i>`: 기울임
 
@@ -171,7 +171,7 @@
 
   `<span></span>`: 의미없는 인라인 컨테이너
 
-- 그룹 컨텐츠
+- 그룹 컨텐츠(block 요소; 한줄 전체를 차지)
 
   `<p></p>`: 하나의 문단
 
@@ -189,11 +189,11 @@
 
   
 
-- table
+- ⭐table
 
   table의 각 영역을 명시하기 위해 `<thead>` `<tbody>` `<tfoot>` 요소를 활용
 
-  `thead`: tr > th
+  `thead`: tr > th (th(의미적 요소) 대신에 td를 써도됌)
 
   `tbody`: tr > td
 
@@ -204,7 +204,7 @@
   - `colspan`, `rowspan` 속성을 활용하여 셀 병합
   - `<caption>`을 통해 표 설명 또는 제목을 나타냄
 
-- form(Django 굉장히 자주 사용)
+- form(Django에서 많이 사용)
 
   `<form>`은 데이터를 서버에 제출하기 위한 영역
 
@@ -219,6 +219,11 @@
     - application/x-ww-form-urlencoded : 기본값
     - multipart/form-data : 파일 전송시
 
+  ```html
+  <form action="/search" method="GET">
+  </form>
+  ```
+
 - input
 
   - 다양한 입력을 받을 수 있게끔 다양한 위젯이 제공됨
@@ -231,21 +236,27 @@
 
     required(필수입력), readonly, autofocus(커서 깜빡임), autocomplete(자동완성), disabled(비활성화) 등 <-- 단일 속성
 
-  > mdn input 사이트
+  ```html
+  <form action="/search" method="GET">
+      <input type="text" name="q">
+  </form>
+  ```
+
+  > mdn input 페이지
 
 - input label
   - label을 클릭하여 input 자체에 초점을 맞출 수 있음
-  - `<input>`에 id속성을, `<label>`에는 for 속성을 활용하여 상호 연관 시킴
+  - `<input>`에 id속성을, `<label>`에 for 속성과 일치시켜 상호 연관 시킴
   
 - input 유형 - 일반
 
-  일반적으로 입력을 받기 위해 제공되며 타입별로 HTML 기본 검증 혹은 추가 속성을 활용할 수 있음
+  일반적으로 입력을 받기 위해 제공
 
-  - text: 일반 텍스트 입력
-  - password: 입력 시 값이 보이지 않고 문자를 특수기호(*)로 표현
-  - email: 이메일 형식이 아닌 경우 form 제출 불가
-  - number: min, max, step 속성을 활용하여 숫자 범위 설정 가능
-  - file: accept 속성을 활용하여 파일 타입 지정 가능
+  - `text`: 일반 텍스트 입력
+  - `password`: 입력 시 값이 보이지 않고 문자를 특수기호(*)로 표현
+  - `email`: 이메일 형식이 아닌 경우 form 제출 불가
+  - `number`: min, max, step 속성을 활용하여 숫자 범위 설정 가능
+  - `file`: accept 속성을 활용하여 파일 타입 지정 가능
 
 - input 유형 - 항목 중 선택
 
@@ -263,7 +274,7 @@
 
     `color`: color picker
 
-    `data`: data picker
+    `date`: date picker
 
   - hidden input을 활용하여 사용자가 입력을 받지 않고 서버에 전송되어야 하는 값을 설정
 
@@ -271,35 +282,29 @@
 
 
 
-## CSS(Cascading Style Sheets)
+## ⭐CSS(Cascading Style Sheets)⭐
 
 - CSS
 
   스타일을 지정하기 위한 언어
 
-  선택하고 스타일을 지정한다.
+  - CSS 기본문법
 
-  - CSS 기본문법 ⭐
-
-  ```
-  h1 {    # 선택자(selector)
+  ```css
+  h1 {    /*선택자(selector)*/
   color: blue;
-  font-size: 15px;   # 속성(property):값(value)
+  font-size: 15px;   /*속성(property):값(value)*/
   }
-  # 매 줄 끝에 세미콜론 작성!
+  /*매 줄 끝에 세미콜론 작성!*/
   ```
-
+  
   - 선택자를 통해 스타일을 지정할 HTML요소 선택
   - 중괄호 안에 속성과 값, 하나의 쌍으로 선언
-  - 속성(property)은 어떤 스타일 기능을 변경할지 결정, 값은 어떻게 스타일 기능을 변경할지 결정
-
->선택자 연습 사이트
->
->https://flukeout.github.io/
+  - 속성(property)은 어떤 스타일 기능을 변경할지 결정, 값(value)은 어떻게 스타일 기능을 변경할지 결정
 
 - CSS 정의 방법
 
-  - 인라인(inline) : 해당 태그에 직접 style 속성 활용
+  - 인라인(inline) : 해당 태그에 직접 style 속성 작성
 
   - 내부 참조 : `<style></style>`태그 내부에 CSS 문법 적용
 
@@ -310,6 +315,8 @@
     --> 하나의 CSS파일로 여러 개의 HTML파일을 바꿀 수 있다.
 
 > 주로 사용하는 속성 위주로 기억하자!
+>
+> font-size, color, margin-top, margin-left, width, margin-bottom, padding-left, padding-top, height, text-decoration, font-family, display,font-weight
 
 - CSS 개발자 도구
 
@@ -319,31 +326,30 @@
 
 
 
-## ⭐CSS Selectors
+### ⭐CSS Selectors
 
-- 선택자 유형⭐
+- ⭐선택자 유형⭐
   - 기본 선택자
     - 전체 선택자, 요소 선택자
     - 클래스 선택자, 아이디 선택자, 속성 선택자
   - 결합자
     - 자손 결합자, 자식 결합자
     - 일반 형제 결합자, 인접 형제 결합자
-  
   - 의사 클래스/요소(Pseudo Class)
-    - 링크, 동적 의사 클래스
-    - 구조적 의사 클래스, 기타 의사 클래스, 속성 선택자
-
-
 
 - 선택자 정리
   - 요소 선택자: HTML 태그를 직접 선택
   - 클래스 선택자: 마침표(.)로 시작되며, 해당 클래스가 적용된 항목을 선택
   - id 선택자: #문자로 시작하며, 해당 아이디가 적용된 항목을 선택, 단일 id를 사용하는 것을 권장
   - 전체 선택자
-- CSS 적용 우선순위⭐
+- ⭐CSS 적용 우선순위⭐
   1. 중요도 : `!important` 0순위 (사용시 주의)
-  2. 우선순위 : 인라인 > id(#) > class(.), (속성, pseudo-class) > 요소, pseudo-element > 전체(*)
+  2. 우선순위 : 인라인 > id(#) > class(.), (pseudo-class) > 요소, pseudo-element > 전체(*)
   3. CSS 파일 로딩 순서 :  가장 마지막이 우선순위가 높다
+
+> 선택자 연습 사이트
+>
+> https://flukeout.github.io/
 
 > CSS selector 우선순위 사이트
 
@@ -351,25 +357,25 @@
 
   CSS는 상속을 통해 부모 요소의 속성을 자식에게 상속한다.
 
-  - 상속 되는 것 예시
+  - 상속 되는 것
 
-    Text 관련 요소(font, color, text-align) 등
+    Text 관련 요소(font, color, text-align), visibility 등
 
-  - 상속 되지 않는 것 예시
+  - 상속 되지 않는 것
 
     Box model 관련 요소(width, height, margin, padding 등)
     
     position 관련 요소(position, top/right/bottom 등) 등
 
-> mdn에서 확인하기
+> mdn 사이트
 
 
 
-## CSS 기본 스타일
+### ⭐CSS 기본 스타일
 
 - 크기 단위
 
-  - 픽셀
+  - px(픽셀)
 
     모니터 해상도의 한 화소인 '픽셀' 기준
 
@@ -381,11 +387,11 @@
 
     가변적인 레이아웃에서 자주 사용
 
-  - em(배수)
+  - **em**(배수)
 
     (바로 위 부모 요소에 대한)상속의 영향을 받음
 
-  - rem(root)
+  - **rem**
 
     **상속 영향 받지 않음**
 
@@ -393,11 +399,11 @@
 
   - viewport
 
-    웹 페이지를 방문한 유저에게 바로 보이게 되는 웹 컨텐츠 영역(디바이스 화면), viewport를 기준으로 상대적인 사이즈 결정
+    유저에게 바로 보이게 되는 웹 컨텐츠 영역(디바이스 화면), viewport를 기준으로 상대적인 사이즈 결정
 
     vw, vh, vmin, vmax
 
-- 색상 단위
+- ⭐색상 단위
 
   - 색상 키워드
 
@@ -413,13 +419,19 @@
 
     색상, 채도, 명도를 통해 특정 색 표현
 
+    hsl()
+  
   - a는 alpha(투명도)
+  
+    rgba()
+  
+    hsla()
 
 
 
-## Selectors 심화
+### ⭐Selectors 심화
 
-- 결합자
+- 결합자(combinators)
 
   - 자손 결합자(띄워쓰기로 표현)
 
@@ -439,7 +451,7 @@
 
 
 
-## CSS Box model
+### CSS Box model
 
 - CSS 원칙
 
@@ -451,6 +463,9 @@
   - padding: 테두리 안쪽의 내부 여백 요소에 적용된 배경색, 이미지는 padding까지 적용
   - border: 테두리 영역
   - margin: 테두리 바깥의 외부 여백 배경색을 지정할 수 없다
+  - shorthand를 통해 표현 가능
+
+  ![image-20220213163413951](01_web.assets/image-20220213163413951.png)
 
 - **Box-sizing**⭐
 
@@ -462,11 +477,11 @@
 
 
 
-## CSS Display
+### CSS Display
 
 - display에 따라 크기와 배치가 달라진다.
 
-- 대표적으로 활용되는 display
+- ⭐대표적으로 활용되는 display
 
   - display: block
 
@@ -508,15 +523,15 @@
   
     block과 inline 레벨 요소의 특징을 모두 가짐
   
-  - display : none
+  - display : **none⭐**
   
     해당 요소를 화면에 표시하지 않고, 공간조차 부여되지 않음
   
-    이와 비슷한 hidden은 해당 요소가 공간은 차지하나 화면에 표시되지 않음
+    이와 비슷한 visibility: hidden은 해당 요소가 공간은 차지하나 화면에 표시되지 않음
 
 
 
-## CSS position
+### ⭐CSS position
 
 - CSS position
 
@@ -528,11 +543,11 @@
 
     부모 요소 내에서 배치될 때는 부모 요소의 위치를 기준으로 배치됨
 
-  - relative⭐
+  - **relative**
 
     : 상대 위치(내자리 유지), normal flow 유지
 
-  - absolute⭐
+  - **absolute**
 
     : 절대 위치(내자리x), normal flow 벗어남
 
