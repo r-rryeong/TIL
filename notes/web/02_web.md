@@ -185,11 +185,7 @@
   |    m-4     | 1.5  |  24  |
   |    m-5     |  3   |  48  |
 
-- color
-
-- text
-
-
+  
 
 ### ⭐Bootstrap Grid system(web design)⭐
 
@@ -200,11 +196,15 @@
   - Container: Column들을 담고 있는 공간
 - Bootstrap Grid system은 flexbox로 제작됨
 - 12개의 column, 6개의 grid breakpoints⭐(sm, md, lg, xl, xxl)
-- `row` 부모 요소 안에 `col`작성⭐
+- `row` 부모 요소 안에 `col`작성⭐(container은 선택)
+
+>workshops4 실습
 
 
 
-class="container" - 좌우 공백 확보(가독성↑)
+-----------------------------------
+
+`container` : 좌우 공백 확보(가독성↑)
 
 ⭐nesting: 부모의 영역을 12등분
 
