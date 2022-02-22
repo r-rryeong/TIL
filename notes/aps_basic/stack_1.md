@@ -61,6 +61,7 @@ ADT(abstract data type)
   ```python
   def push(item, size):
       global top
+      # global 키워드는 global 변수를 사용해야할 때
       top += 1
       if top == size:
           # print('overflow!')(디버깅용)
@@ -75,9 +76,9 @@ ADT(abstract data type)
   top += 1
   stack[top]
   ```
-
   
-
+  
+  
   ex) 브라우저에 있는 뒤로 가기 버튼
 
 >개발자들이 개발 관련해서 많이 찾아보는 사이트
@@ -112,7 +113,7 @@ ADT(abstract data type)
 
 - 자기 자신을 호출하여 순환 수행되는 것
 - 함수에서 실행해야 하는 작업의 특성에 따라 일반적인 호출방식보다 재귀호출방식을 사용하여 함수를 만들면 프로그램의 크기를 줄이고 간단하게 작성
-- 재귀의 기본구조
+- 재귀를 이용한 배열 복사(재귀의 기본구조)
 
 ```python
 def f(i, N):
