@@ -48,28 +48,7 @@
 
 ### 부분집합
 
-```python
-def f(i, N, K):   # i 부분집합에 포함될지 결정할 원소의 인덱스, K는 찾는 합
-    if i == N:   # 한개의 부분집합 완성
-        s = 0
-        for j in range(N):
-            if bit[j]:
-                s += a[j]
-        if s == K:   # 찾는 합이면
-            for j in range(N):
-                if bit[j]:
-                    print(a[j], end=' ')
-        print()
-    else:
-        bit[i] = 1
-        f(i+1, N, K)
-        bit[i] = 0
-        f(i+1, N, K)
 
-a = [1, 2, 3, 4, 5, 6, 7, 8]
-bit = [0] * 8
-f(0, 3, 10)
-```
 
 
 
