@@ -1,8 +1,4 @@
 ```python
-import sys
-
-sys.stdin = open('input.txt', 'r')
-
 def BubbleSort(x):                           # 버블 정렬 구현
     for i in range(len(x)-1, 0, -1):         # 정렬될 구간의 끝 인덱스부터 접근
         for j in range(0, i):                # j는 0부터 i까지
