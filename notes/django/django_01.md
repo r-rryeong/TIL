@@ -84,13 +84,13 @@ URL → VIEW → TEMPLATE (데이터의 흐름)
 
    `source venv/Scripts/activate`
 
-   `pip install (-r) requirements.txt`
-
 2.  django 설치
 
 ​	`pip install django==3.2`
 
 ​	`pip freeze > requirements.txt`
+
+​	(pip install -r requirements.txt)
 
 3.  프로젝트 생성
 
@@ -240,21 +240,19 @@ URL → VIEW → TEMPLATE (데이터의 흐름)
 
 - Template inheritance(템플릿 상속)
 
-  - tags
+  {% extends '' %}
 
-    {% extends '' %}
+  :자식(하위)템플릿이 부모 템플릿을 확장한다는 것을 알림
 
-    :자식(하위)템플릿이 부모 템플릿을 확장한다는 것을 알림
+  반드시 템플릿 최상단에 작성
 
-    반드시 템플릿 최상단에 작성
+  {% block content %} {% endblock %}
 
-    {% block content %} {% endblock %}
+  : 하위 템플릿에서 재지정할 수 있는 블록을 정의(즉, 하위 템플릿이 채울 수 있는 공간)
 
-    : 하위 템플릿에서 재지정할 수 있는 블록을 정의(즉, 하위 템플릿이 채울 수 있는 공간)
+  {% include '' %}
 
-    {% include '' %}
-
-    : 템플릿을 로드하고 현재 페이지로 렌더링, 템플릿 내에 다른 템플릿을 포함하는 방법
+  : 템플릿을 로드하고 현재 페이지로 렌더링, 템플릿 내에 다른 템플릿을 포함하는 방법
 
 
 
@@ -270,7 +268,7 @@ URL → VIEW → TEMPLATE (데이터의 흐름)
 
   사용자로부터 입력받은 데이터를 서버로 전송하는 역할을 담당
 
-  핵심 속성: `action`(전달된 서버주소), `method`(입력 데이터 전달 방식 지정)
+  핵심 속성: `action`(전달될 서버주소), `method`(입력 데이터 전달 방식 지정)
 
 - input
 
@@ -280,9 +278,13 @@ URL → VIEW → TEMPLATE (데이터의 흐름)
 
   핵심 속성: `name`
 
+  GET방식에서는 URL에서 ?key=value&key=value 형식으로 데이터를 전달함
+
 - label
 
   label을 input과 연결(label을 클릭했을 때 input에 포커싱이 가도록)
+
+  input에 id속성 부여, label에는 input의 id와 동일한 값의 for 속성이 필요
 
 - for
 
@@ -290,13 +292,46 @@ URL → VIEW → TEMPLATE (데이터의 흐름)
 
   웹에서 이루어지는 모든 데이터 교환의 기초
 
-  GET: 정보를 조회하는데 사용, 데이터를 가져올 때만 사용해야함
+  "GET": 정보를 조회하는데 사용, 데이터를 가져올 때만 사용해야함
 
   데이터를 서버에 전송할 때 body가 아닌 Query String Parmneters를 통해 전송
 
-  POST: 생성, 수정, 삭제
+  "POST": 생성, 수정, 삭제
 
 
 
 ### URL
 
+- Variable Routing
+
+  url주소를 변수로 사용하는 것
+
+  url의 일부를 변수로 지정하여 view 함수의 인자로 넘길 수 있음
+
+  즉, 변수 값에 따라 하나의 path()에 여러 페이지를 연결시킬 수 있음
+
+- URL Path converters
+
+  - str: 작성하지 않을 경우 기본값
+
+  - int: 0 또는 양의 정수와 매치
+
+  - slug: ASCII 문자 또는 숫자, 하이픈 및 밑줄 문자로 구성된 모든 슬러그 문자열과 매치
+
+    ex) 'building-your-1st-django-site'
+
+- App URL mapping
+
+  app의 view함수가 많아지면서 사용하는 path() 또한 많아지고, app 또한 더 많이 작성되기 때문에 프로젝트의 urls.py에서 모두 관리하는 것은 프로젝트 유지보수에 좋지 않음
+
+  이제는 각 app에 urls.py를 작성하게 됨
+
+- Naming URL patterns
+
+  이제는 링크에 url을 직접 작성하는 것이 아니라 path() 함수의 name 인자를 정의해서 사용
+
+- url template tag
+
+  {% url '' %}
+
+  템플릿에 URL을 하드 코딩하지 않고 링크를 출력하는 방법
