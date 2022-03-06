@@ -10,3 +10,4 @@
 
 ## python
 
+1. [기본 문법](./notes/python/0117.md)
