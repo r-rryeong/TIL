@@ -72,7 +72,7 @@ Django는 내장 Django ORM을 사용함
 
   - 단점
 
-    ORM만으로 완전한 서비스를 구현하기 어려운 경우가 있음
+    ORM만으로 완전한 서비스를 구현하기 어려운 경우가 있음(디테일한 구조)
 
   ⇒ 현대 웹 프레임워크의 요점은 웹 개발의 속도를 높이는 것(생산성)
 
@@ -96,7 +96,7 @@ Django는 내장 Django ORM을 사용함
 
   `CharField(max_length=None, **options)` : 길이 제한이 있는 문자열을 넣을 때 사용할 때. max_length는 필수 인자
 
-  `TextField`() : 글자수가 많을 때 사용
+  `TextField`() : 글자수가 많을 때 사용(길이 제한X)
 
 >full_clean()
 >
@@ -128,13 +128,15 @@ $ python manage.py makemigrations
 
 $ python manage.py migrate
 
-$ python manage.py sqlmigrate app_name 0001
+$ python manage.py sqlmigrate app_name 0001(앱이름/ 설계도 번호)
 
 $ python manage.py showmigrations
 
 
 
 - 추가 모델 필드 작성 후 makemigrations 진행
+
+  이전 행의 새로운 컬럼의 데이터를 어떻게 처리할 것인가?
 
   `1) Provide a one-off default now (will be set on all existig rows) `: makemigrations할때 디폴트값으로 해줘
 
@@ -174,7 +176,7 @@ $ python manage.py showmigrations
 
     기본적으로 모든 Django 모델 클래스에 objects라는 Manager를 추가
 
-  - QuerySet
+  - QuerySet(유사 리스트)
 
     데이터베이스로부터 전달받은 객체 목록
 
@@ -220,7 +222,7 @@ $ pip install django-extensions (settings.py에 앱 등록)
 
     단순히 모델을 인스턴스화 하는 것은 DB에 영향을 미치지 않기 때문에 반드시 save()가 필요
 
-- str method
+- str method:  print할 때 나오는 형태 지정
 
   표준 파이썬 클래스의 메소드인 str()을 정의하여 각각의 objects가 사람이 읽을 수 있는 문자열을 반환하도록 할 수 있음 (작성 후 반드시 shell_plus를 재시작해야 반영됨)
 
