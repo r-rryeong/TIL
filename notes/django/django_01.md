@@ -6,7 +6,7 @@
 
 서버 ;django → 클라이언트(응답)
 
-- Static web page(정적 웹 페이지)
+- **Static web page**(정적 웹 페이지)
 
   서버에 미리 저장된 파일이 사용자에게 그대로 전달되는 웹 페이지
 
@@ -14,7 +14,9 @@
 
   모든 상황에서 모든 사용자에게 동일한 정보를 표시
 
-- Dynamic web page(동적 웹 페이지)
+  flat page 라고도 한다
+
+- **Dynamic web page**(동적 웹 페이지)
 
   요청을 받은 경우 추가적인 처리 과정 이후 클라이언트에게 응답을 보냄
 
@@ -34,9 +36,9 @@
 
 - Web framework 목적
 
-  웹 페이지를 개발하는 과정에서 겪는 어려움을 줄이는 것이 주 목적
+  웹 페이지를 개발하는 과정에서 겪는 어려움을 줄이는 것이 주 목적으로 데이터베이스 연동, 템플릿 형태의 표준, 세션 관리, 코드 재사용 등
   
-  데이터베이스 연동, 템플릿 형태의 표준, 세션 관리, 코드 재사용 등
+  동적인 웹 페이지나, 웹 애플리케이션, 웹 서비스 개발 보조용으로 만들어지는 application framework의 일종
 
 
 
@@ -48,11 +50,11 @@
 
 - Framework 구조
 
-  MVC Design Pattern(model-view-controller)
+  **MVC Design Pattern**(model-view-controller)
 
   Django는 **MTV Pattern**이라고 함(특별한 의미없음, 더 잘 맞는 것 같아서)
 
-- MTV Pattern⭐
+- MTV⭐
 
   Model
 
@@ -66,11 +68,10 @@
 
   : HTTP 요청을 수신하고 HTTP응답을 반환, template에게 응답의 서식 설정을 맡김
 
+  > 정리
+
+  ![image-20220320170100958](django_01.assets/image-20220320170100958.png)
   
-
-  ![image-20220302125229192](django_01.assets/image-20220302125229192.png)
-
-> 정리
 
 
 
@@ -78,51 +79,117 @@
 
 URL → VIEW → TEMPLATE (데이터의 흐름)
 
-1.  가상환경 생성 및 활성화
+**1. 가상환경 설정하기**
+
+1. 가상환경 생성 및 활성화
 
    `python -m venv venv`
 
    `source venv/Scripts/activate`
 
-2.  django 설치
+   > 2. 가상환경이 정상적으로 실행되었는지 확인
+   >
+   > `pip list`
+
+**2. Django 설치하기**
 
 ​	`pip install django==3.2`
 
 ​	`pip freeze > requirements.txt`
 
-​	(pip install -r requirements.txt)
+> requirements.txt가 있는 경우
+>
+> `	pip install -r requirements.txt'
 
-3.  프로젝트 생성
-
-​	⭐프로젝트 생성 명령어
+**3. 프로젝트 생성**⭐
 
 ​	`$ django-admin startproject firstpjt .`
 
-4.  서버 켜서 로켓 확인
+- 서버 켜서 로켓 확인
 
 ​	`python manage.py runserver`
 
-5.  앱 생성
+**4. Application 생성**
 
-   ` python manage.py startapp articles`
+` python manage.py startapp articles`
 
-6.  앱 등록
+- 앱 등록
 
-7.  (장고pjt 생성 완료)프로젝트 폴더 바로 아래에 templates라는 폴더 생성
+`INSTALLED_APP`에 생성한 어플리케이션을 등록
 
-8.  settings.py에 TEMPLATES에 있는 DIRS 리스트에 templates경로 등록
+**5. url 분리**
 
-9.  base.html을 생성하고 꾸민다
+1. `settiongs.py`와 같은 곳에 위치한 `urls.py`를 먼저 수정
 
-​	(git으로 관리할 때는 venv는 커밋하지 않기. requirements.txt만 커밋)
+   - 주석을 확인하여 `include`를 import한다.
 
-- 프로젝트 구조
+   - urlpatterns 리스트에
+
+     `path('경로/', include('앱이름.urls')),`를 추가
+
+     경로는 보통 앱이름으로 작성
+
+2. 만든 앱 폴더 내부에 `urls.py` 파일을 새로 생성한다.
+
+   - 기본 구조를 다음과 같이 작성
+
+     ```python
+     from django.urls import path
+     from . import views
+          
+     app_name = '앱이름'
+     urlpatterns = [
+         
+     ]
+     ```
+
+**6. base.html**
+
+1. 공통으로 사용하는 템플릿 파일 생성
+
+   - 위치는 `manage.py`와 같은 곳에 `templates` 라는 폴더를 생성
+   - 생성한 `templates` 폴더 내부에 `base.html` 파일 생성
+
+2. 위에서 생성한 `templates` 폴더의 위치를 `settings.py`에 등록
+
+   - 아래와 같이 DIRS 에 `BASE_DIR / 'templates'` 를 리스트 내부에 추가
+
+   ```python
+   TEMPLATES = [
+       {
+           ...
+           'DIRS': [BASE_DIR / 'templates'],
+           ...
+       }
+   ]
+   ```
+
+3. base.html을 작성한다.
+
+   - DTL) block tag 반드시 추가한다.
+
+   ```html
+   <body>
+       {% block content %}
+       {% endblock content %}
+   </body>
+   ```
+
+   - block 위치에 내용 작성
+
+> git으로 관리할 때는 venv는 커밋하지 않기. requirements.txt만 커밋
+>
+> .ignore 생성
+
+
+
+- **프로젝트 구조**
 
   settings.py : 애플리케이션의 모든 설정 포함
 
   **urls.py** : 사이트의 url과 적절한 views의 연결 지정
 
-  위 두 개의 파일만 터치(다른 파일은 터치할 일 없음)
+  (위 두 개의 파일만 터치, 다른 파일은 터치할 일 없음)
 
 - Application 생성
 
@@ -138,7 +205,7 @@ URL → VIEW → TEMPLATE (데이터의 흐름)
 
   views.py : view 함수들이 정의되는 곳
 
-  위 세 개의 파일만 터치
+  (위 세 개의 파일만 터치)
 
 
 
@@ -182,17 +249,27 @@ URL → VIEW → TEMPLATE (데이터의 흐름)
 
   함수의 return으로 render() (사용자에게 응답 결과 전달)
 
+  Model을 통해 요청에 맞는 필요 데이터에 접근
+
 - Templates
 
   반드시 앱 폴더 내부에 'templates'폴더 내부에 html 파일이 있어야함
 
-- LANGUAGE_CODE: 영어로 쓰는 것 권장
+- 추가설정
+
+  - LANGUAGE_CODE: 영어로 쓰는 것 권장
+
+    한국어는 'ko-kr' 입력
+
+  - TIME_ZONE: 시간대를 나타내는 문자열 지정
+
+    한국시간은 'Asia/Seoul' 입력
 
 
 
 ### Template
 
-- Django Template Language(**DTL**)
+- Django Template Language(**DTL**)⭐
 
   Django template에서 사용하는 built-in template system
 
@@ -210,7 +287,7 @@ URL → VIEW → TEMPLATE (데이터의 흐름)
 
      render()안의 변수명은 context로 지정(관행적 약속)
 
-     render()의 세번째 인자로 {'key': value}와 같이 딕셔너리 형태로 넘겨주며 여기서 해당하는 문자열이 template에서 사용 가능한 변수명이 됨
+     render()의 세번째 인자로 {'key': value}와 같이 딕셔너리 형태로 넘겨주며 여기서 key에 해당하는 문자열이 template에서 사용 가능한 변수명이 됨
 
   2. Filters
 
@@ -230,28 +307,32 @@ URL → VIEW → TEMPLATE (데이터의 흐름)
 
      > https://docs.djangoproject.com/en/3.2/ref/templates/builtins/
      >
-     > ⭐for문 파트 읽어보기
+     > ⭐for, url tag, include, data filter 읽어보기
 
   4. Comments
 
      {# 내용 #} : 한줄 주석에만 사용
 
      ctrl + ' / ': 여러 줄 주석에 사용
+     
+     여러 줄 주석은 {% comment %}와 {% endcomment %}사이에 입력
 
-- Template inheritance(템플릿 상속)
+- Template inheritance(템플릿 상속)⭐
 
-  {% extends '' %}
+  - 템플릿 상속은 기본적으로 코드의 재사용성에 초점을 맞춤
+
+  `{% extends '' %}`
 
   :자식(하위)템플릿이 부모 템플릿을 확장한다는 것을 알림
 
   반드시 템플릿 최상단에 작성
 
-  {% block content %} {% endblock %}
+  `{% block content %} {% endblock %}`
 
   : 하위 템플릿에서 재지정할 수 있는 블록을 정의(즉, 하위 템플릿이 채울 수 있는 공간)
 
-  {% include '' %}
-
+  `{% include '' %}`
+  
   : 템플릿을 로드하고 현재 페이지로 렌더링, 템플릿 내에 다른 템플릿을 포함하는 방법
 
 
@@ -268,7 +349,11 @@ URL → VIEW → TEMPLATE (데이터의 흐름)
 
   사용자로부터 입력받은 데이터를 서버로 전송하는 역할을 담당
 
-  핵심 속성: `action`(전달될 서버주소), `method`(입력 데이터 전달 방식 지정)
+  - 핵심 속성⭐
+
+    `action`(전달될 서버주소)
+
+    `method`(입력 데이터 전달 방식 지정)
 
 - input
 
@@ -276,9 +361,9 @@ URL → VIEW → TEMPLATE (데이터의 흐름)
 
   type 속성에 따라 동작 방식이 달라짐(radio, checkbox, ...)
 
-  핵심 속성: `name`
+  - 핵심 속성
 
-  GET방식에서는 URL에서 ?key=value&key=value 형식으로 데이터를 전달함
+    `name`: GET방식에서는 URL에서 ?key=value&key=value 형식으로 데이터를 전달함
 
 - label
 
@@ -286,23 +371,33 @@ URL → VIEW → TEMPLATE (데이터의 흐름)
 
   input에 id속성 부여, label에는 input의 id와 동일한 값의 for 속성이 필요
 
-- for
+  - for 속성
 
-- HTTP
+    for 속성의 값과 일치하는 id를 가진 문서의 첫 번째 요소를 제어
+
+    label 요소와 연결할 수 있는 요소: button, input, select, textarea...
+
+
+
+- HTTP(HyperText Transfer Protocol)
 
   웹에서 이루어지는 모든 데이터 교환의 기초
 
-  "GET": 정보를 조회하는데 사용, 데이터를 가져올 때만 사용해야함
+  - HTTP request method 종류⭐
 
-  데이터를 서버에 전송할 때 body가 아닌 Query String Parmneters를 통해 전송
+    **"GET"**: 서버로부터 정보를 조회하는데 사용, 데이터를 가져올 때만 사용해야함
 
-  "POST": 생성, 수정, 삭제
+    데이터를 서버에 전송할 때 body가 아닌 Query String Parmneters를 통해 전송
+
+    우리는 서버에 요청을 하면 HTML 문서 파일 한장을 받는데, 이때 사용하는 요청 방식이 GET
+
+    **"POST"**: 생성, 수정, 삭제
 
 
 
 ### URL
 
-- Variable Routing
+- Variable Routing⭐
 
   url주소를 변수로 사용하는 것
 
@@ -326,9 +421,30 @@ URL → VIEW → TEMPLATE (데이터의 흐름)
 
   이제는 각 app에 urls.py를 작성하게 됨
 
+  ```python
+  # firstpjt/urls.py
+  
+  from django.contrib import admin
+  from django.urls import path, include
+  
+  urlpatterns = [
+      path('anmin/', admin.site.urls),
+      path('articles/', include('articles.urls')),
+      path('pages/' include('pages.urls')),
+  ]
+  ```
+
+  
+
 - Naming URL patterns
 
   이제는 링크에 url을 직접 작성하는 것이 아니라 path() 함수의 name 인자를 정의해서 사용
+
+  url 태그를 사용해서 path() 함수에 작성한 name을 사용
+
+  `path('index/', views.index, name='index')`
+
+  `<a href="{% url 'index' %}">메인 페이지</a>`
 
 - url template tag
 
