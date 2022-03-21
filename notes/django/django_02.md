@@ -1,4 +1,4 @@
-## Django Model
+# Django Model
 
 ### Model
 
@@ -38,7 +38,7 @@ Django는 model을 통해 데이터에 접속하고 관리
 
     행(row): 레코드(record) or 튜플
 
-  - PK(기본키; primary key)
+  - **PK**(기본키; primary key)⭐
 
     각 행의 고유값으로 반드시 설정되어야 하며, 데이터베이스 관리 및 관계 설정시 주요하게 활용된다.
 
@@ -92,9 +92,9 @@ Django는 내장 Django ORM을 사용함
 
   - 각 필드는 클래스의 속성으로 지정되어 있으며, 각 속성은 각 데이터베이스의 열에 매핑
 
-- 사용 모델 필드
+- **사용 모델 필드**
 
-  `CharField(max_length=None, **options)` : 길이 제한이 있는 문자열을 넣을 때 사용할 때. max_length는 필수 인자
+  `CharField(max_length=None, **options)` : 길이 제한이 있는 문자열을 넣을 때 사용할 때. max_length는 필수 인자!
 
   `TextField`() : 글자수가 많을 때 사용(길이 제한X)
 
@@ -104,15 +104,15 @@ Django는 내장 Django ORM을 사용함
 
 
 
-### Migrations
+### ⭐Migrations⭐
 
 Django가 model에 생긴 변화를 반영하는 방법(class를 table로 만드는 과정)
 
-- 명령어
+- 명령어⭐
 
   `makemigrations` : model을 변경한 것에 기반한 새로운 migration(like 설계도)을 만들 때 사용
 
-  `migrate` : migration을 DB에 반영하기 위해 사용, 모델의 변경 사항들과 DB의 스키마가 동기화를 이룸
+  `migrate` : migration을 DB에 반영하기 위해 사용, 모델의 변경 사항들과 DB가 동기화를 이룸
 
   > 위 두 개는 table로 만들어가는 명령어
 
@@ -142,11 +142,11 @@ $ python manage.py showmigrations
 
   `2) Quit, and let me add a default in models.py` : models.py에 써놓을게 그거대로 해줘
 
-- DateField's options
+- DateField's options⭐
 
-  `auto_now_add`: 데이터가 생성될 때의 시간
+  `auto_now_add`: 데이터가 생성될 때의 시간(최초)
 
-  `auto_now`: 현재 시간을 자동으로 저장, Django ORM이 save를 할 때마다 시간 갱신
+  `auto_now`: 현재 시간을 자동으로 저장, Django ORM이 save를 할 때마다 시간 갱신(최종)
 
 - 테이블 이름
 
@@ -163,6 +163,8 @@ $ python manage.py showmigrations
   DB를 조작하기 위한 도구
 
   Django가 기본적으로 ORM을 제공함에 따른 것으로 DB를 편하게 조작할 수 있도록 도움
+
+  Model을 만들면 Django는 객체들을 만들고 읽고 수정하고 지울 수 있는 database-access API를 자동으로 만듦
 
 - DB API 구문 - Making Queries
 
@@ -216,9 +218,9 @@ $ pip install django-extensions (settings.py에 앱 등록)
 
   - `save()` method
 
-    saving objects
-
     객체를 데이터베이스에 저장함
+
+    데이터 생성 시 save()를 호출하기 전에는 객체의 ID값이 무엇인지 알 수 없음
 
     단순히 모델을 인스턴스화 하는 것은 DB에 영향을 미치지 않기 때문에 반드시 save()가 필요
 
@@ -244,17 +246,23 @@ $ pip install django-extensions (settings.py에 앱 등록)
 
     `>>> article = Article.objects.get(pk=100)`
 
+    `DoesNotExist: Article matching query does not exist.`
+
   - `filter()`
 
     주어진 lookup 매개변수와 일치하는 객체를 포함하는 새 QuerySet을 반환
 
 - UPDATE
 
+  불러오고, 수정하고, 저장한다
+
   article 인스턴스 객체의 인스턴스 변수의 값을 변경 후 저장
 
 - DELETE
 
-  `delete()`: QuerySet의 모든 행에 대해 SQL 삭제 쿼리를 수행
+  `delete()`: QuerySet의 모든 행에 대해 SQL 삭제 쿼리를 수행하고
+
+  삭제된 객체수와 객체 유형당 삭제 수가 포함된 딕셔너리를 반환
 
 - Field lookups
 
@@ -262,11 +270,11 @@ $ pip install django-extensions (settings.py에 앱 등록)
 
   `filter()`, `exclude()`, `get()`에 대한 키워드 인수로 지정
 
-> 데이터 베이스 조작을 위한 다양한 QuerySet API methods는 공식문서를 반드시 참고하여 학습할 것
-
 >pk lookup shortcut
 >
 >https://docs.djangoproject.com/en/4.0/topics/db/queries/#the-pk-lookup-shortcut
+
+> 데이터 베이스 조작을 위한 다양한 QuerySet API methods는 공식문서를 반드시 참고하여 학습할 것
 
 
 
@@ -304,8 +312,52 @@ Model class를 admin.py에 등록하고 관리
 
   `list_editable`
 
-  
+
 
 >다양한 ModelAdmin options 참고
 >
 >https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#modeladmin-options
+
+
+
+### CRUD with views
+
+- HTTP method
+
+  `GET`
+
+  : 반드시 데이터를 가져올 때만 사용해야함
+
+  CRUD에서 R을 담당
+
+  ⭐`POST`
+
+  : 서버로 데이터를 전송할 때 사용
+
+  서버에 변경사항을 만듦
+
+  CRUD에서 C/U/D 역할을 담당
+
+- 사이트 간 요청 위조(cross-site request forgery)
+
+  사용자가 자신의 의지와 무관하게 공격자가 의도한 행동을 하여 특정 웹페이지를 보안에 취약하게 하거나 수정, 삭제 등의 작업을 하게 만드는 공격 방법
+
+- CSRF 공격 방어
+
+  Security Token 사용방식(CSRF Token)
+
+  사용자가 데이터에 임의의 난수 값을 부여해, 매 요청마다 해당 난수 값을 포함시켜 전송 시키도록 함
+
+  이후 서버에서 요청 받을 때마다 전달된 token값이 유효한지 검증
+
+- csrf_token template tag
+
+  ⭐`{% csrf_token %}`
+
+  일반적으로 데이터 변경이 가능한 POST, PATCH, DELETE Method 등에 적용
+
+- Django shortcut function - **redirect()**
+
+  새 URL로 요청을 다시 보냄
+
+  파이썬 문법을 적용받음
