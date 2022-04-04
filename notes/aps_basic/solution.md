@@ -55,3 +55,18 @@
     익숙한 이름: 입력받는 변수, 선언한 변수 등
 
     함수호출, 조건, 반복, break 등 익숙한 방법으로 구현
+
+---------------------------
+
+- BFS 기본틀
+
+  ```python
+  def bfs(si, sj, ei, ej):
+      q = []    # 초기화
+      visited[[0] * N for _ in range(N)]
+      
+      q.append([si, sj])
+      visited
+  ```
+
+  
