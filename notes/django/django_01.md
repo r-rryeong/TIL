@@ -99,7 +99,7 @@ URL → VIEW → TEMPLATE (데이터의 흐름)
 
 > requirements.txt가 있는 경우
 >
-> `	pip install -r requirements.txt'
+> 'pip install -r requirements.txt'
 
 **3. 프로젝트 생성**⭐
 
