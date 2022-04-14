@@ -361,3 +361,27 @@ Model class를 admin.py에 등록하고 관리
   새 URL로 요청을 다시 보냄
 
   파이썬 문법을 적용받음
+
+
+
+
+
+----------------
+
+### django_02 summary
+
+~63 페이지까지
+
+model 수정
+
+orm의 장점과 단점
+
+
+
+⭐migrations 명령어
+
+
+
+get()으로 데이터 하나만 받아올때는 return이 인스턴스(객체)
+
+그렇지 않을때는 queryset(유사리스트)으로 return
