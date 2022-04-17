@@ -1,4 +1,4 @@
-# Django Model
+# Django Model(22.03.07)
 
 ### Model
 
