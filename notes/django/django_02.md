@@ -234,15 +234,15 @@ $ pip install django-extensions (settings.py에 앱 등록)
 
   - `all()`
 
-    현재 QuerySet의 복사본을 반환
+    현재 QuerySet의 복사본을 반환. queryset(유사리스트)으로 return.
 
     `>>> Article.objects.all()`
 
   - `get()`
 
-    주어진 lookup 매개변수와 일치하는 객체를 반환
+    주어진 lookup 매개변수와 일치하는 객체를 반환. 객체(인스턴스)로 return.
 
-    객체를 찾을 수 없으면 DoesNotExist 예외를 발생시키고, 둘 이상의 객체를 찾으면 MultipleObjectsReturned 예외를 발생 시킴
+    객체를 찾을 수 없으면 DoesNotExist 예외를 발생시키고, 둘 이상의 객체를 찾으면 MultipleObjectsReturned 예외를 발생시킴
 
     `>>> article = Article.objects.get(pk=100)`
 
@@ -255,8 +255,6 @@ $ pip install django-extensions (settings.py에 앱 등록)
 - UPDATE
 
   불러오고, 수정하고, 저장한다
-
-  article 인스턴스 객체의 인스턴스 변수의 값을 변경 후 저장
 
 - DELETE
 
@@ -363,25 +361,3 @@ Model class를 admin.py에 등록하고 관리
   파이썬 문법을 적용받음
 
 
-
-
-
-----------------
-
-### django_02 summary
-
-~63 페이지까지
-
-model 수정
-
-orm의 장점과 단점
-
-
-
-⭐migrations 명령어
-
-
-
-get()으로 데이터 하나만 받아올때는 return이 인스턴스(객체)
-
-그렇지 않을때는 queryset(유사리스트)으로 return
