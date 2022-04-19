@@ -131,18 +131,6 @@ Django는 Model을 통해 Form class를 만들 수 있는 ModelForm을 제공!
 
 
 
-ModelForm과 Form은 뭐가 더 좋고 나쁘고 할 것 없이 역할이 다르다!
-
-ModelForm: 데이터 베이스 관련, 데이터를 저장   ex) 회원가입
-
-Form: 데이터 베이스 관련 x, model 정보 가지고 있지 않음, 데이터를 저장할 필요없을 때  ex) 로그인
-
-- ModelForm이 쉽게 해주는 것
-  1. 모델 필드 속성에 맞는 html element를 만들어 주고
-  2. 이를 통해 받은 데이터를 view함수에서 유효성 검사를 할 수 있도록 함
-
-
-
 - create view 수정
   1. ModelForm을 이용해서 전달되는 request.POST 정보를 가지는 인스턴스를 생성
   2. 인스턴스의 유효성 검사
@@ -195,16 +183,55 @@ Form: 데이터 베이스 관련 x, model 정보 가지고 있지 않음, 데이
 
   app폴더 내부에 작성하자. 관리하기 편리함
 
-  
+
+- Form & ModelForm 비교
+
+  ModelForm과 Form은 뭐가 더 좋고 나쁘고 할 것 없이 역할이 다르다!
+
+  - Form
+
+    modle에 연관되지 않은 데이터를 받을 때 사용(model 정보 가지고 있지 않음)
+
+    데이터 베이스 관련 x
+
+    데이터를 저장할 필요없을 때  ex) 로그인
+
+  - ModelForm
+
+    데이터 베이스 관련
+
+    데이터를 저장   ex) 회원가입
+
+> ModelForm이 쉽게 해주는 것
+>
+> 1. 모델 필드 속성에 맞는 html element를 만들어 주고
+> 2. 이를 통해 받은 데이터를 view함수에서 유효성 검사를 할 수 있도록 함
+
+- Widgets 활용하기
+
+  2가지 작성 방식을 가짐(Meta class 밖에 작성하는 방식 권장)
+
+
 
 ### Rendering fields manually
 
->
->
->django bootstrap 5
+- 수동으로 From 작성하기
 
-- rendering fields manually
+  1. Rendering fields manually
 
-  form.필드명.요소
+     form.필드명.요소
 
-  
+  2. Looping over the form's fields (for tag)
+
+- Bootstrap과 함께 사용하기
+
+  1. Bootstrap Forms
+
+     핵심 클래스 - `form-control`
+
+  2. Django Bootstrap Library
+
+     `$ pip install django-bootstrap-v5`
+
+
+
