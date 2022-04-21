@@ -272,12 +272,154 @@
 
   - Django REST Framework(DRF)
 
-    
+    Web API 구축을 위한 강력한 Toolkit을 제공하는 라이브러리
 
+    DRF의 Serializer는 Django의 Form 및 ModelForm 클래스와 매우 유사하게 구성되고 작동함
 
+  - Web API
+
+    웹 애플리케이션 개발에서 다른 서비스에 요청을 보내고 응답을 받기 위해 정의된 명세
+
+- Django ModelForm & DRF Serializer
+
+  |          | Django    | DRF        |
+  | -------- | --------- | ---------- |
+  | Response | HTML      | JSON       |
+  | Model    | ModelForm | Serializer |
+
+  
 
 ### Single Model⭐
 
+- DRF with Single Model
+
+  단일 모델의 data를 serialization하여 JSON으로 변환하는 방법에 대한 학습
+
+  단일 모델을 두고 CRUD 로직을 수행 가능하도록 설계
+
+  API 개발을 위한 핵심 기능을 제공하는 도구 활용
+
+  - DRF built-in form
+
+  - Postman
+
+    API를 구축하고 사용하기 위해 여러 도구를 제공하는 API 플랫폼
+
+    설계, 테스트, 문서화 등의 도구를 제공함으로써 API를 더 빠르게 개발 및 생성할 수 있도록 도움
+
+- ModelSerializer
+
+  모델 필드에 해당하는 필드가 있는 Serializer 클래스를 자동으로 만들 수 있는 shortsut
+
+  아래 핵심 기능을 제공
+
+  1. 모델 정보에 맞춰 자동으로 필드 생성
+  2. serializer에 대한 유효성 검사기를 자동으로 생성
+  3. .create() & .update()의 간단한 기본 구현이 포함됨
+
+- 'many' argument
+
+  `many=True`
+
+  단일 인스턴스 대신 QuerySet 등을 serialization하기 위해서는 serializer를 인스턴스화 할 때 many=True를 키워드 인자로 전달해야함
+
+
+
 - Build RESTful API
 
-  
+  |             | GET          | POST    | PUT         | DELETE      |
+  | ----------- | ------------ | ------- | ----------- | ----------- |
+  | articles/   | 전체 글 조회 | 글 작성 |             |             |
+  | articles/1/ | 1번 글 조회  |         | 1번 글 수정 | 1번 글 삭제 |
+
+  ⇒ view 함수 2개 필요
+
+- 1. GET - Article List
+
+  - 'api_view' decorator
+
+    기본적으로 GET 메서드만 허용되며 다른 메서드 요청에 대해서는 405로 응답
+
+    view 함수가 응답해야하는 HTTP 메서드의 목록을 리스트의 인자로 받음
+
+    DRF에서는 선택이 아닌 필수적으로 작성해야 해당 view 함수가 정상적으로 동작함
+
+- 2. GET - Article Detail
+
+- 3. POST - Create Article
+
+  201 Created 상태 코드 및 메시지 응답
+
+  RESTful 구조에 맞게 작성(URI는 자원을 표현, 자원을 조작하는 행위는 HTTP Method)
+
+  article_list 함수로 게시글을 조회하거나 생성하는 행위를 모두 처리 가능
+
+  - Status Codes in DRF
+
+    DRF에는 status code를 보다 명확하고 읽기 쉽게 만드는 데 사용할 수 있는 정의된 상수 집합을 제공
+
+    status 모듈에 HTTP status code 집합이 모두 포함되어 있음
+
+    (단순히 status=201 같은 표현도 사용할 수 있지만 권장하지 않음)
+
+  - 'raise_exception' argument
+
+    `is_valid()`는 유효성 검사 오류가 있는 경우, ValidationError 예외를 발생시키는 raise_exception 인자를 사용할 수 있음
+
+    DRF에서 제공하는 기본 예외 처리기에 의해 자동으로 처리되며, 기본적으로 HTTP status code 400을 응답으로 반환함
+
+- 4. DELETE - Delete Article
+
+  204 No Content 상태 코드 및 메시지 응답
+
+  article_detail 함수로 상세 게시글을 조회하거나 삭제하는 행위 모두 처리 가능
+
+- 5. PUT - Update Article
+
+  article_detail 함수로 상세 게시글을 조회하거나 삭제, 수정하는 행위 모두 처리 가능
+
+
+
+> swagger 문서
+>
+> https://drf-yasg.readthedocs.io/en/stable/custom_spec.html#the-swagger-auto-schema-decorator
+
+
+
+### 1:N Relation
+
+1:N 관계에서의 모델 data를 serialization하여 JSON으로 변환하는 방법에 대한 학습
+
+2개 이상의 1:N 관계를 맺는 모델을 두고 CRUD 로직을 수행 가능하도록 설계하기
+
+- 1. GET - Comment List
+
+- 2. GET - Comment Detail
+
+- 3. POST - Create Comment
+
+  Article 생성과 달리 Comment 생성은 생성 시에 참조하는 모델의 객체 정보 필요(1:N 관계에서 N은 어떤 1을 참조하는지에 대한 정보가 필요하기 때문)
+
+  - .save()
+
+    .save() 메서드는 특정 serializer 인스턴스를 저장하는 과정에서 추가적인 데이터를 받을 수 있음(인스턴스를 저장하는 시점에 추가 데이터 삽입이 필요한 경우)
+
+  - Read Only Field(읽기 전용 필드)
+
+    어떤 게시글에 작성하는 댓글인지에 대한 정보를 form-data로 넘겨주지 않았기 때문에 serialization하는 과정에서 article 필드가 유효성 검사를 통과하지 못함
+
+    이때는 읽기 전용 필드 설정을 통해 serialization하지 않고 반환 값에만 해당 필드가 포함되도록 설정할 수 있음
+
+- 4. DELETE & PUT - delete, update Comment
+
+
+
+- 1:N Serializer
+
+  1. 특정 게시글에 작성된 댓글 목록 출력하기
+
+     기존 필드 override
+
+  2. 특정 게시글에 작성된 댓글의 개수 구하기
+
+     새로운 필드 추가
