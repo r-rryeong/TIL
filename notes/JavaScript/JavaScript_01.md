@@ -118,3 +118,58 @@
   switch로 동작되는 것은 if 문으로도 작성할 수 있음
 
   복잡한 조건문인 경우는 if 문보다 switch문이 더 간단하게 작성할 수도 있음
+
+
+
+### 함수
+
+- 함수 in JavaScript
+
+  - 참조 타입 중 하나로써 function 타입에 속함
+  - JavaScript 
+
+- Spread operator
+
+  파이썬의 언패킹 생각
+
+
+
+오타 - 132p. 화살표, 괄호 생략됨
+
+for Each 제외하고 다른 메서드는 콜백 필수
+
+- reduce
+
+  [, 초기화 설정값] - 생략 가능
+
+- ES6
+
+  ⭐구조 분해 할당
+
+
+
+### this 정리
+
+roiem 문서 참고
+
+
+
+### Lodash
+
+
+
+> https://lodash.com/
+
+
+
+```html
+ // 1. 해당 코드를 template string 을 활용하여 리팩토링하시오.
+    const name = 'Tom'
+    console.log('Hi, my name is ' + `${name}`)
+
+    // 2. 해당 코드를 arrow function 으로 리팩토링하시오.
+    add = (x, y) => x + y
+
+    square = x => x ** 2
+```
+
