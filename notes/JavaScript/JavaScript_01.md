@@ -778,3 +778,110 @@
 
 
 
+
+
+----------------------
+
+### js01 summary
+
+js의 특징
+
+DOM 이란? (window)
+
+
+
+식별자 정의와 특징
+
+
+
+변수 선언 키워드(**let, const, var** 특징, 스코프)
+
+⭐let, const, var 비교
+
+
+
+데이터 타입(원시 타입과 참조 타입 차이점)
+
+원시 타입과 참조 타입 비교
+
+undefined와 null 비교
+
+자동 형변환(object 항상 참)
+
+
+
+'=='와 '==='의 차이점
+
+논리 연산자 단축 평가 지원
+
+삼항 연산자
+
+
+
+switch(break)
+
+
+
+for... in, for... of 의 차이점
+
+조건과 반복문 정리
+
+
+
+함수 선언식, 함수 표현식 차이점
+
+
+
+Rest parameter
+
+spread operator
+
+
+
+⭐선언식 vs 표현식
+
+
+
+Arrow function
+
+function과의 차이점
+
+
+
+배열의 정의와 특징
+
+⭐array helper method
+
+forEach
+
+
+
+속성명 축약, 메서드명 축약(언제 축약 가능?)
+
+⭐구조 분해 할당
+
+⭐spread operator
+
+
+
+this 정리
+
+
+
+### js02 summary
+
+
+
+거의 다 나옴!!!
+
+33 p. 차이점
+
+HTML 컬렉션과 nodelist 차이점
+
+append와 - 차이점
+
+innertext와 이너html 차이점
+
+리무브와 - 차이점
+
+preventDefalut
