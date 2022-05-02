@@ -1,3 +1,5 @@
+## JavaScript 01(22.04.25)
+
 ### JavaScript 기초
 
 - 브라우저
@@ -422,7 +424,7 @@
 
 
 
-- 함수 선언식(function statement, declaration)
+- **함수 선언식**(function statement, declaration)
 
   함수의 이름과 함께 정의하는 방식
 
@@ -432,7 +434,7 @@
   - 매개변수(args)
   - 몸통(중괄호 내부)
 
-- 함수 표현식(function expression)
+- **함수 표현식**(function expression)
 
   함수를 표현식(어떤 하나의 값으로 결정되는 코드의 단위) 내에서 정의하는 방식
 
@@ -452,13 +454,13 @@
 
 - 매개변수와 인자의 개수 불일치 허용
 
+
+
 - Rest Parameter
 
   rest parameter(...)를 사용하면 함수가 정해지지 않은 수의 매개변수를 배열로 받음(Python의 *args와 유사)
 
   만약 rest parameter로 처리한 매개변수에 인자가 넘어오지 않을 경우에는 빈 배열로 처리
-
-
 
 - Spread operator
 
@@ -468,7 +470,7 @@
 
 
 
-### 선언식 vs 표현식
+### ⭐선언식 vs 표현식
 
 - 함수 선언식과 표현식 비교 정리
 
@@ -600,7 +602,7 @@
 
 
 
-- 배열 관련 메서드 - 심화편(Array Helper Methods)
+- ⭐배열 관련 메서드 - 심화편(Array Helper Methods)
 
   메서드 호출 시 인자로 callback 함수(어떤 함수의 내부에서 실행될 목적으로 인자로 넘겨받는 함수)를 받는 것이 특징
 
@@ -733,7 +735,7 @@
 
     배열 또는 객체를 분해하여 속성을 변수에 쉽게 할당할 수 있는 문법
 
-  - 객체 전개 구문(Spread Operator)
+  - 객체 전개 구문(Spread Operator)⭐
 
     spread operator(...)를 사용하면 객체 내부에서 객체 전개 가능
 
