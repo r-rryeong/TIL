@@ -18,6 +18,22 @@ hidden → none
 
 
 
+methods : data를 바꾸는 로직 위주(setter 함수들)
+
+computed : data를 통한 값을 얻음(getter 함수들)
+
+
+
+watch는 명령형, vue에서 우리가 선호하는 것은 선언형
+
+거의 쓰지 않음. computed 사용
+
+(watch 공식문서 참고)
+
+❓watch와 method의 차이점
+
+
+
 function자리에 화살표함수가 들어가면 안되지만 function 안에 화살표함수가 들어가는건 function의 this를 그대로 물려받기때문에 사용이 가능합니다
 
 물려받기보다는 화살표함수에 this자체가 없어서 상위 함수의 this 를 찾아간다는 느낌

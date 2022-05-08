@@ -418,8 +418,10 @@
 
   1. 특정 게시글에 작성된 댓글 목록 출력하기
 
-     기존 필드 override
+     Serializer는 기존 필드 override하거나 추가 필드를 구성할 수 있음
+
+     - PrimaryKeyRelatedField
 
   2. 특정 게시글에 작성된 댓글의 개수 구하기
-
+  
      새로운 필드 추가
