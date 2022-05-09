@@ -422,6 +422,24 @@
 
      - PrimaryKeyRelatedField
 
+       필드가 to many relationships를 나타내는데 사용되는 경우 many=True 속성 필요
+  
+       해당 필드 값을 form-data로 받지 않으면 read_only=True 설정 필요
+  
+       (역참조 시 생성되는 comment_set을 다른 매니저 이름으로 override할 수 있음. 단, 다음과 같이 수정할 경우 이전 serializers.py에서의 클래스 변수명도 일치하도록 수정)
+  
+     - Nested relationships
+  
+       중첩된 관계는 serializers를 필드로 사용하여 표현할 수 있음
+  
+       두 클래스의 상하위치 변경
+  
   2. 특정 게시글에 작성된 댓글의 개수 구하기
   
      새로운 필드 추가
+     
+     - 'source' arguments
+     
+       필드를 채우는 데 사용할 속성의 이름
+     
+       점(dot)표기법을 사용하여 속성 탐색
