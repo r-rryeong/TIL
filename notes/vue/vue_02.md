@@ -98,17 +98,17 @@
 
 - Vue CLI Start
 
-  설치 - $ npm install -g @vue/cli   (-g는 global이라는 뜻으로 쓰라는 곳에만 쓰자)
+  설치 - `$ npm install -g @vue/cli`   (-g는 global이라는 뜻으로 쓰라는 곳에만 쓰자)
 
-  버젼 확인 - $ vue --version 혹은 $ vue -V
+  버젼 확인 - `$ vue --version` 혹은 `$ vue -V`
 
-  프로젝트 생성 - $ vue create my-first-app
+  프로젝트 생성 - `$ vue create my-first-app`
 
   Vue 버전 선택 - [Vue 2]
 
-  프로젝트 디렉토리 이동 - $ cd my-first-app
+  프로젝트 디렉토리 이동 - `$ cd my-first-app`
 
-  서버 실행 - npm run serve
+  서버 실행 - `npm run serve` (package.json이 있어야 실행되기 때문에 프로젝트로 이동 필요)
 
 
 
@@ -216,11 +216,11 @@
 
     webpack에 의해 빌드된 정적 파일
 
-  - src/components
+  - src/**components**
 
     하위 컴포넌트들
 
-  - src/App.vue
+  - src/**App.vue**
 
     최상위 컴포넌트
 
@@ -228,6 +228,8 @@
 
     webpack이 빌드를 시작할 때 가장 먼저 불러오는 entry point
 
+    html파일에서 DOM과 data를 연결하는 역할
+    
     Vue 전역에서 활용할 모듈을 등록할 수 있는 파일
 
   
@@ -245,7 +247,7 @@
     팀원 및 배포 환경에서 정확히 동일한 종속성을 설치하도록 보장하는 표현
 
     사용할 패키지의 버전을 고정
-
+  
     개발 과정 간의 의존성 패키지 충돌 방지
 
 
@@ -343,3 +345,60 @@
     추가 인자는 리스너의 콜백 함수로 전달
 
   부모 컴포넌트는 자식 컴포넌트가 사용되는 템플릿에서 v-on을 사용하여 자식 컴포넌트가 보낸 이벤트를 청취
+
+  - Emit event 작성
+
+    현재 인스턴스에서 $emit 인스턴스 메서드를 사용해 이벤트를 트리거
+
+    부모 컴포넌트는 자식 컴포넌트가 사용되는 템플릿에서 v-on directive를 사용하여 자식 컴포넌트가 보낸 이벤트를 청취
+
+  - event 이름 컨벤션
+
+    이벤트는 자동 대소문자 변환을 제공하지 않음
+
+    DOM 템플릿의 v-on 이벤트 리스너는 항상 자동으로 소문자 변환이 되기 때문에 v-on:myEvent는 자동으로 v-on:myevent로 변환
+
+    이러한 이유로 이벤트 이름에는 항상 kebab-case를 사용하는 것 권장
+
+
+
+### Vue Router
+
+- Vue Router
+
+  Vue.js 공식 라우터
+
+  router란? 위치에 대한 최적 경로를 지정하며, 이 경로를 따라 데이터를 다음 장치로 전향시키는 장치 (django에서 urls.py 역할, {% url ' ' %})
+
+  라우트에 컴포넌트를 매핑한 후, 어떤 주소에서 렌더링할 지 알려줌
+
+  SPA 상에서 라우팅을 쉽게 개발할 수 있는 기능 제공
+
+- Vue Router 시작하기
+  1. 프로젝트 생성 및 이동
+  2. Vue Router plugin 설치
+  3. commit 여부
+  4. History mode 사용 여부
+
+
+
+----------------------------
+
+0510 필기
+
+App.vue가 제일 크고 그다음 view파일내의 vue(하나의 페이지), 그다음 components파일 내의 vue(페이지 내의 요소)
+
+router를 add하게 되면 이제 App.vue에서 하던걸 index.js로 가져가고 views에서  .vue 관리
+
+index.js → views에서 파일 생성 → App.vue에서 router-link 수정
+
+
+
+- Youtube API 만들기
+
+1. 검색어받아오기. 검색어를 App.vue로 보내자
+
+2. 전달받은 keyword로 Youtube API를 요청하고 응답을 저장하자
+3. video list를 컴포넌트 등록하고 비디오 목록을 받아오자
+4. 개별 데이터를 item에 전달
+5. 클릭한 영상 data를 detail에서 재생
