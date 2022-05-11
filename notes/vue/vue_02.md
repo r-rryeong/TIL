@@ -386,6 +386,8 @@
 
 0510 필기
 
+- router
+
 App.vue가 제일 크고 그다음 view파일내의 vue(하나의 페이지), 그다음 components파일 내의 vue(페이지 내의 요소)
 
 router를 add하게 되면 이제 App.vue에서 하던걸 index.js로 가져가고 views에서  .vue 관리
