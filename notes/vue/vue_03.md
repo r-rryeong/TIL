@@ -6,6 +6,8 @@
 
 state - data
 
+state도 .vue에서 받아쓸때는 computed에 들어가야한다.(data에 x, 데이터를 받아쓰는 것이기 때문에 변화가 일어나면 안됨)
+
 view - HTML
 
 action - method
@@ -19,10 +21,12 @@ action - method
 3. Action => dispatch
 
    actions에 있는 함수안의 인자 context는 만능(state, getters, mutations에 모두 접근 가능)
+   
+4. Getters : 캐시 메모리에 미리 데이터를 준비해놓고 필요할 때마다 가져다 씀, return값 필요
 
 
 
-v-for와 key는 세트!
+v-for와 key(바인딩)는 세트!⭐
 
 mutations의 함수명은 모두 대문자 권장
 
@@ -34,3 +38,18 @@ mutations의 함수는 actions로 한번더 감쌈(?), actions을 통해서 호�
 
 const commit = context.commit과 함수 인자로 { commit }을 받는 것은 같다.(key랑 value가 중복이기 때문. 맥가이버 칼에서 필요한 기능만 뽑아서 쓰는 느낌)
 
+
+
+--------------------------------
+
+### Summary
+
+Vuex란? 중앙 집중식 저장소⭐
+
+Vuex management pattern
+
+Vuex Core Concepts⭐
+
+Component Binding Helper
+
+디렉티브 예제⭐
