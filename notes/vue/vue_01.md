@@ -47,3 +47,53 @@ watch
 
 
 ![image-20220504173903910](vue_01.assets/image-20220504173903910.png)
+
+
+
+----------------------
+
+### summary
+
+vue.js란?
+
+SPA
+
+CSR, SSR 각각의 장점과 단점
+
+바닐라 JS와 Vue.js 비교
+
+MVVM Pattern
+
+
+
+⭐Quick Start of Vue.js
+
+
+
+Vue 인스턴스
+
+syntax
+
+
+
+⭐template syntax
+
+v-text, v-html 비교
+
+v-show, v-if 비교
+
+v-for
+
+v-on, v-bind
+
+(디렉티브 실습문서)
+
+v-model(trim)
+
+⭐computed
+
+computed & methods & watch
+
+filter
+
+⭐Lifecycle Hooks

@@ -376,8 +376,13 @@
 
 - Vue Router 시작하기
   1. 프로젝트 생성 및 이동
+  
   2. Vue Router plugin 설치
+  
+     `$ vue add router`
+  
   3. commit 여부
+  
   4. History mode 사용 여부
 
 
