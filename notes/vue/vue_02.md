@@ -46,7 +46,7 @@
 
 - Vue Component 구조 예시
 
-  - 한 화명 안에서도 기능 별로 각기 다른 컴포넌트가 존재
+  - 한 화면 안에서도 기능 별로 각기 다른 컴포넌트가 존재
 
     하나의 컴포넌트는 여러 개의 하위 컴포넌트를 가질 수 있음
 
@@ -200,7 +200,7 @@
 
     node.js 환경의 여러 의존성 모듈(venv와 같은 존재)
 
-    npm i (node_modules 삭제하고 다시 설치할 때 명령어)
+    `npm i` (node_modules 다시 설치할 때 명령어)
 
   - public/index.html
 
@@ -366,13 +366,13 @@
 
 - Vue Router
 
-  Vue.js 공식 라우터
-
-  router란? 위치에 대한 최적 경로를 지정하며, 이 경로를 따라 데이터를 다음 장치로 전향시키는 장치 (django에서 urls.py 역할, {% url ' ' %})
+  "Vue.js 공식 라우터"
 
   라우트에 컴포넌트를 매핑한 후, 어떤 주소에서 렌더링할 지 알려줌
 
   SPA 상에서 라우팅을 쉽게 개발할 수 있는 기능 제공
+
+  위치에 대한 최적 경로를 지정하며, 이 경로를 따라 데이터를 다음 장치로 전향시키는 장치 (django에서 urls.py 역할, {% url ' ' %})
 
 - Vue Router 시작하기
   1. 프로젝트 생성 및 이동
@@ -387,19 +387,89 @@
 
 
 
-----------------------------
+- Vue Router로 인한 변화
 
-0510 필기
+  1. App.vue 코드
+  2. router/index.js 생성(index.js: router에 관련된 정보 및 설정이 작성되는 곳)
+  3. views 디렉토리 생성
 
-- router
+  > router를 add하게 되면 이제 App.vue에서 하던걸 index.js로 가져가고 views에서  .vue 관리
 
-App.vue가 제일 크고 그다음 view파일내의 vue(하나의 페이지), 그다음 components파일 내의 vue(페이지 내의 요소)
+  > index.js → views에 파일 생성 → App.vue에서 router-link 수정
 
-router를 add하게 되면 이제 App.vue에서 하던걸 index.js로 가져가고 views에서  .vue 관리
+  - `<router-link>`
 
-index.js → views에서 파일 생성 → App.vue에서 router-link 수정
+    사용자 네비게이션을 가능하게 하는 컴포넌트
+
+    목표 경로는 'to' prop으로 지정됨
+
+    HTML5 히스토리 모드에서 router-link는 클릭 이벤트를 차단하여 브라우저 페이지를 다시 로드하지 않도록 함
+
+    a태그지만 우리가 알고 있는 GET요청을 보내는 a태그와 조금 다르게, GET 요청을 보내는 이벤트를 제거한 형태
+
+  - `<router-view>`
+
+    주어진 라우트에 대해 일치하는 컴포넌트를 렌더링하는 컴포넌트
+
+    실제 component가 DOM에 부착되어 보이는 자리를 의미
+
+    router-link를 클릭하면 해당 경로와 연결되어 있는 index.js에 정의한 컴포넌트가 위치
 
 
+
+- History mode
+
+  HTML History API를 사용해서 router를 구현한 것
+
+  브라우저의 히스토리는 남기지만 실제 페이지는 이동하지 않는 기능을 지원
+
+  즉, 페이지를 다시 로드하지 않고 URL을 탐색할 수 있음
+
+  ⇒ SPA의 단점 중 하나인 'URL이 변경되지 않는다'를 해결
+
+  - [참고]History API
+
+    DOM의 Window 객체는 history 객체를 통해 브라우저의 세션 기록에 접근할 수 있는 방법을 제공
+
+
+
+- Vue Router
+
+  1. Named Routes
+
+  2. 프로그래밍 방식 네비게이션
+
+     `<router-link>`를 사용하여 선언적 탐색을 위한 a태그를 만드는 것 외에도, router의 인스턴스 메서드를 사용하여 프로그래밍 방식으로 같은 작업을 수행할 수 있음
+
+     `$router.push(...)`
+
+     Vue 인스턴스 내부에서 라우터 인스턴스 $router 에 접근할 수 있음
+
+     따라서 다른 URL로 이동하려면 this.$router.push를 호출할 수 있음
+
+     이 메서드는 새로운 항목을 히스토리 스택에 넣기 때문에 사용자가 브라우저의 뒤로 가기 버튼을 클릭하면 이전 URL로 이동하게 됨
+
+     `<router-link>`를 클릭할 때 내부적으로 호출되는 메서드이므로 `<router-link :to="...">`를 클릭하면, router.push(...)를 호출하는 것과 같음
+
+  3. Dynamic Route Matching
+
+     동적 인자 전달
+
+     주어진 패턴을 가진 라우트를 동일한 컴포넌트에 매핑해야하는 경우
+
+     예를 들어 모든 User에 대해 동일한 레이아웃을 가지지만, 다른 User ID로 렌더링 되어야하는 User 컴포넌트 예시(p. 81)
+
+     동적 인자는 :(콜론)으로 시작
+
+
+
+- components와 views
+
+  기본적으로 작성된 구조에서 components폴더와 views 폴더 내부에 각기 다른 컴포넌트가 존재하게 됨
+
+
+
+------------------------------
 
 - Youtube API 만들기
 
