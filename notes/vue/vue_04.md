@@ -91,12 +91,5 @@ Vue
 >
 > API TMDB → Django REST API ↔ Vue
 >
-> 인기영화를 추가할 때 마다 맞춤 취향으로 인기영화 목록 업데이트
 
 
-
-DB 저장하기
-
-TMDB에 요청해서 데이터 받아오고 json파일에 저장
-
-→ json파일의 데이터를 DB에 저장
