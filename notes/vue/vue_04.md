@@ -65,7 +65,7 @@ User  모델 생성
 
 <img src="vue_04.assets/image-20220516165008395.png" alt="image-20220516165008395" style="zoom: 67%;" />
 
-- 
+
 
 <img src="vue_04.assets/image-20220516165808456.png" alt="image-20220516165808456"  />
 
@@ -87,9 +87,6 @@ Vue
 >
 > 모델링, 시리얼라이저
 >
-> 어떤 데이터를 주고받을지(서버와 클라이언트) 합의
->
 > API TMDB → Django REST API ↔ Vue
 >
-
 
