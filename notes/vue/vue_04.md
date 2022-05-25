@@ -79,14 +79,3 @@ Vue
 
 (axios로 요청보낼때는 header, config 부분에 작성)
 
-
-
-
-
-> 프로젝트 순서
->
-> 모델링, 시리얼라이저
->
-> API TMDB → Django REST API ↔ Vue
->
-
