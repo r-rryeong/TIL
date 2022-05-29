@@ -38,3 +38,7 @@ mutations의 함수는 actions로 한번더 감쌈(?), actions을 통해서 호�
 
 const commit = context.commit과 함수 인자로 { commit }을 받는 것은 같다.(key랑 value가 중복이기 때문. 맥가이버 칼에서 필요한 기능만 뽑아서 쓰는 느낌)
 
+
+
+### d
+
