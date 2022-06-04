@@ -61,7 +61,7 @@ User  모델 생성
 
   예시 참고(p. 19)
 
-- Same-origin 예시
+- Same-origin
 
 <img src="vue_04.assets/image-20220516165008395.png" alt="image-20220516165008395" style="zoom: 67%;" />
 
