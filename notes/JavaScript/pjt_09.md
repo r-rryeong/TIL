@@ -1,5 +1,3 @@
-
-
 $ git init
 
 $ touch README.md
@@ -31,6 +29,5 @@ oauth2 naver show2
 Google Cloud Platform
 
 > Google Developer Console
-
 
 
