@@ -22,7 +22,7 @@ json 파일(Body)은 스네이크 케이스
 
 
 
-**AOP**
+### AOP
 
 - Join Point: 타겟 객체가 구현한 인터페이스의 모든 메서드는 조인 포인트가 된다.
 - Aspect: AOP의 기본 모듈, Advice + Pointcut
@@ -44,7 +44,7 @@ json 파일(Body)은 스네이크 케이스
 
 
 
-**object mapper**
+### object mapper
 
 - jackson-databind (2.12.1)
 
@@ -58,7 +58,7 @@ json 파일(Body)은 스네이크 케이스
 
 
 
-**Spring Boot Annotations**
+### Spring Boot Annotations
 
 | Annotation             | 의미                                                         |
 | ---------------------- | ------------------------------------------------------------ |
@@ -88,7 +88,7 @@ json 파일(Body)은 스네이크 케이스
 
 
 
-**Validation**
+### Validation
 
 프로그래밍에 있어서 가장 필요한 부분. 특히 Java에서는 null값에 대해서 접근하려고 할 때 null pointer exception이 발생함으로, 이러한 부분을 방지하기 위해서 미리 검증하는 과정을 Validation이라고 한다.
 
@@ -97,20 +97,20 @@ json 파일(Body)은 스네이크 케이스
 3. 흩어져 있는 경우 어디에서 검증을 하는지 알기 어려우며, 재사용의 한계가 있다.
 4. 구현에 따라 달라질 수 있지만, 검증 Logic이 변경되는 경우 테스트 코드 등 참조하는 클래스에서 
 
-| @Size               | 문자 길이 측정              | Int Type 불가 |
-| ------------------- | --------------------------- | ------------- |
-| @NotNull            | null 불가                   |               |
-| @NotEmpty           | null, "" 불가               |               |
-| @NotBlank           | null, "", " " 불가          |               |
-| @Past               | 과거 날짜                   |               |
-| @PastOrPresent      | 오늘이거나 과거 날짜        |               |
-| @Future             | 미래 날짜                   |               |
-| @FutureOrPresent    | 오늘이거나 미래 날짜        |               |
-| @Pattern            | 정규식 적용                 |               |
-| @Max                | 최대값                      |               |
-| @Min                | 최소값                      |               |
-| @AssertTrue / False | 별도 Logic 적용             |               |
-| @Valid              | 해당 object validation 실행 |               |
+| @Size               | 문자 길이 측정              | Int Type 불가               |
+| ------------------- | --------------------------- | --------------------------- |
+| @NotNull            | null 불가                   |                             |
+| @NotEmpty           | null, "" 불가               |                             |
+| @NotBlank           | null, "", " " 불가          |                             |
+| @Past               | 과거 날짜                   |                             |
+| @PastOrPresent      | 오늘이거나 과거 날짜        |                             |
+| @Future             | 미래 날짜                   |                             |
+| @FutureOrPresent    | 오늘이거나 미래 날짜        |                             |
+| @Pattern            | 정규식 적용                 |                             |
+| @Max                | 최대값                      |                             |
+| @Min                | 최소값                      |                             |
+| @AssertTrue / False | 별도 Logic 적용             | method가 is로 시작해야한다. |
+| @Valid              | 해당 object validation 실행 |                             |
 
 ① gradle dependecies
 
@@ -128,6 +128,61 @@ json 파일(Body)은 스네이크 케이스
 
 - ResponseEntity: 사용자의 HttpRequest에 대한 응답 데이터를 포함하는 클래스(HttpStatus, HttpHeaders, HttpBody를 포함)
 - BindingResult: 검증 오류가 발생할 경우 오류 내용을 보관하는 객체
+
+
+
+### Custom Validation
+
+1. AssertTrue / False와 같은 method 지정을 통해 Custom Logic 적용 가능
+2. ConstraintValidator를 적용하여 재사용이 가능한 Custom Logic 적용 가능
+
+
+
+- @Constraint: annotation을 Bean Validation Constraint로 만들어 주는 annotation
+
+
+
+### Exception 처리
+
+Web Application의 입장에서 바라보았을때, 에러가 났을 때 내려줄 수 있는 방법은 많지 않다.
+
+1. 에러 페이지
+2. 4XX Error or 5XX Error
+3. Client가 200 외에 처리를 하지 못할 때는 200을 내려주고 별도의 에러 메세지 전달
+
+| @ControllerAdvice | Global 예외 처리 및 특정 package / Controller 예외처리 |
+| ----------------- | ------------------------------------------------------ |
+| @ExceptionHandler | 특정 Controller의 예외처리                             |
+
+
+
+- int와 integer: int는 null로 초기화할 수 없고 산술연산 가능, integer는 산술 연산이 불가능하지만 null 값 처리가 용이하다.
+- e.getlocalizedmessage와 e.getMessage: 오류 처리를 수행하는 동안 catch 블록에서 발생하는 메시지를 가져오기 위해 두 가지 메서드를 사용. getlocalizedmessage는 현지 언어로 예외 이름을 반환한다.
+- @MethodArgumentNotValidException: @Valid 애너테이션으로 데이터를 검증하고, 해당 데이터에 에러가 있을 경우 예외 메세지를 JSON으로 처리하는 ExceptionHandler 처리 방법
+- @RestController: @Controller에 @ResponseBody가 결합된 annotation. @Controller와 달리 @RestController는 컨트롤러 클래스의 각 메서드마다 @ResponseBody를 추가할 필요가 없다.
+
+- getRejectValue(): 필드 오류, 즉 특정 필드 값을 거부하는 이유를 캡슐화한다.
+
+
+
+### Filter-Interceptor
+
+Filter란 Web Application에서 관리되는 영역으로써 Spring Boot Framework에서 Client로 부터 오는 요청/응답에 대해서 최초/최종 단계의 위치에 존재하며, 이를 통해서 요청/ 응답의 정보를 변경하거나, Spring에 의해서 데이터가 변환되기 전의 순수한 Client의 요청/ 응답 값을 확인할 수 있다.
+
+유일하게 ServletRequest, ServletResponse의 객체를 변환할 수 있다.
+
+주로 Spring Framework에서는 request/response의 Logging 용도로 활용하거나, 인증과 관련된 Logic들을 해당 Filter에서 처리한다.
+
+이를 선/후 처리함으로써, Service business logic과 분리 시킨다.
+
+- Lombok: annotation을 통해 getter, setter, toString 모두 생성 가능
+- Slf4j: 로깅에 대한 추상 레이어를 제공하는 인터페이스의 모음. System.out을 사용하지 않아도 console에 보기 좋게 log가 찍히는 것을 볼 수 있다.
+
+- Servlet: 웹 프로그래밍에서 클라이언트 요청을 처리하고 처리 결과를 클라이언트에 전송하는 기술. 자바로 구현된 CGI(Common gateway Interface)
+  - 클라이언트의 요청에 대해 동적으로 작동하는 웹 어플리케이션 컴포넌트
+  - html을 사용해서 요청에 응답한다
+  - Java thread를 통해 동작한다
+  - MVC패턴 중 Controller로 이용된다
 
 
 
@@ -163,5 +218,11 @@ application.properties파일에서 server.port=9090 입력
 ```
 // JSON 내려주기
 // req -> object mapper -> object -> method -> object -> object mapper -> json -> response
+```
+
+```
+ContentCachingRequestWrapper
+HttpServletResponse
+HttpServletRequest
 ```
 
