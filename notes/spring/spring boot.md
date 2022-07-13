@@ -186,6 +186,12 @@ Filter란 Web Application에서 관리되는 영역으로써 Spring Boot Framewo
 
 
 
+### DB
+
+- Optional: Optional<T>는 null이 올 수 있는 값을 감싸는 Wrapper 클래스
+
+
+
 
 ## 💡에러
 
