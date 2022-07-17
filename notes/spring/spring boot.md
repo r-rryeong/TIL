@@ -9,20 +9,41 @@ json 파일(Body)은 스네이크 케이스
 ### 단축키
 
 - alt + Enter: 수행할 action을 보여줌(import, replace,...)
+- ctrl + space: method 자동완성(arrow method)
 
 # 🌱TIL
-
-- port번호 변경하기
-  
-  application.properties에서
-  
-  server.port=9090
 
 - var: 타입 추론하는 단축된 약어(자바11부터 추가)
 
 - dependency
 
 - throws: 예외던지기
+
+### API
+
+- port번호 변경하기
+  
+  application.properties에서 server.port=9090 입력
+
+- @RestController: 해당 Class는 REST API 처리하는 Controller
+
+- @RequestMapping(): URI를 지정해주는 Annotation
+  
+  ex) @RequestMapping("/api") 를 입력하면 URI는 'http://localhost:8080/api'
+
+- @JsonNaming(value = ) : @JsonProperty()와 다르게 해당 클래스에 일괄적으로 모든 naming 룰을 적용
+
+- @PathVariable: URL Path Variable Parsing
+
+### CRUD
+
+- GET: 리소스 취득, R
+
+- POST: 리소스 생성, 추가, C
+
+- PUT: 리소스 갱신, 생성, C / U
+
+- DELETE: 리소스 삭제, D
 
 ### AOP
 
@@ -52,7 +73,9 @@ json 파일(Body)은 스네이크 케이스
 
 > JSON Validator 사이트
 
-- @JsonProperty()
+- @JsonProperty(): 해당 변수는 요청 보낼 때 특정 이름으로 매칭시킬 것이다.
+  
+  변수명이 카멜케이스, 스네이크케이스도 아닌 약어를 가질 때도 사용
 
 - JsonNode: Jackson 라이브러리에서 제공하는 JSON을 표현하기 위한 추상 클래스
 
