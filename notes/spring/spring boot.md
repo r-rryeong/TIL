@@ -10,6 +10,7 @@ json 파일(Body)은 스네이크 케이스
 
 - alt + Enter: 수행할 action을 보여줌(import, replace,...)
 - ctrl + space: method 자동완성(arrow method)
+- 
 
 # 🌱TIL
 
@@ -34,6 +35,14 @@ json 파일(Body)은 스네이크 케이스
 - @JsonNaming(value = ) : @JsonProperty()와 다르게 해당 클래스에 일괄적으로 모든 naming 룰을 적용
 
 - @PathVariable: URL Path Variable Parsing
+
+- ResponseEntity<>: 객체에 대해 httpstatus code 지정
+
+- @Controller : return 하는 리소스를 찾게됨
+
+- @ResponseBody : body를 그대로 내려줌
+
+- @JsonInclude(): null 이나 비어있는 필드를 표시하지 않을 수 있음
 
 ### CRUD
 
@@ -68,6 +77,23 @@ json 파일(Body)은 스네이크 케이스
 - Thread.sleep(): 실행 중인 스레드를 잠시 멈춘다
 
 ### object mapper
+
+```
+Text JSON -> Object
+Object -> Text JSON
+
+controller req json(text) -> object
+response object -> json(text)
+
+
+object -> text
+// object mapper get method를 활용한다.
+objectMapper.writeValueAsString(변수);
+
+text -> object
+// object mapper는 default 생성자를 필요로 한
+objectMapper.readValue(바꿀 변수명, 바꿀 타입);
+```
 
 - jackson-databind (2.12.1)
 
@@ -226,14 +252,3 @@ application.properties파일에서 server.port=9090 입력
 (port 번호를 바꾸자)
 
 ## ❓질문
-
-```
-// JSON 내려주기
-// req -> object mapper -> object -> method -> object -> object mapper -> json -> response
-```
-
-```
-ContentCachingRequestWrapper
-HttpServletResponse
-HttpServletRequest
-```

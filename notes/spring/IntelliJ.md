@@ -107,8 +107,6 @@
 
 > Help → Keymap Reference 참고
 
-
-
 💡한글 깨짐 현상 해결
 
 1. File - Settings에 들어가서 File Encoding 메뉴에 들어간다.
