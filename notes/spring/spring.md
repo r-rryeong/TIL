@@ -87,4 +87,50 @@
 7. service 반환
 8. view에 응답(JSON 형태, postman안쓰고 swagger 사용, @ApiParam)
 
-# 
+## Lombok 알아보기
+- @Getter: getter 생성
+- @Setter: setter 생성
+> 마우스 우클릭 -> Refactor -> Delombok을 클릭하면 어노테이션이 작성해주는 코드를 볼 수 있음
+- @ToString: 객체의 내용을 보여준다.
+- @NoArgsConstructor: 인자없이 생성되는 생성자
+> JPA에서 거의 필수
+- @AllArgsConstructor: 객체가 가지고 있는 모든 필드를 인자로 받아서 생성
+- @RequiredArgsConstructor: 필요한 인자만을 이용해서 생성자를 만든다.(일반적인 경우에는 @NoArgsConstructor와 같음, 변수에 @NotNull을 이용하면 필수값이 됨)
+- @EqualsAndHashCode: equals 메서드와 hashcode 메서드를 오버라이딩하기 위해 사용
+- @Data: @Getter, @Setter, @RequiredArgsConstructor, @ToString, @EqualsAndHashCode를 모두 선언한 것과 동일
+- @Builder: @AllArgsConstructor와 비슷하게 객체를 생성하고 필드값을 주입해주는데, Builder의 형식으로 제공
+
+## Spring Security
+Security가 필요한 이유
+- 웹사이트는 각종 서비스를 하기 위한 리소스와 서비스를 사용하는 유저들의 개인 정보를 가지고 있다. 이들 리소스를 보호하기 위해 일반적으로 웹사이트는 두가지 보안 정책을 설정해야 한다.
+  - 서버 리소스
+  - 유저들의 개인정보
+
+## OAuth2
+### CommonOAuth2Provider
+아래 4개의 Provider에 대해 기본 정보들을 제공합니다.
+- Google
+- Github
+- facebook
+- OKTA
+- naver
+- kakao
+
+### OAuth2User
+- facebook, naver, kakao
+- OAuth2User: UserDetails를 대체합니다.
+- OAuth2UserService: UserDetailService를 대체합니다. 기본 구현체는 DefaultOAuth2UserService 입니다.
+
+1. OAuth2 Provider(인증 제공자)
+- Authentication Server(인증 서버)
+  - 사용자 정보를 담고 있다.
+- Resource Server(리소스 서버)
+  - 사이트에 가입한 사용자 정보 
+  > 리소스
+  사용자가 위임한 개인정보
+  프로바이더가 제공하는 서비스 정보
+2. 인증을 위임한/인증 서비스를 이용하는 서비스
+- Client Server, 3rd Party Server
+- 우리 서버
+3. 서비스 이용자
+- Client
