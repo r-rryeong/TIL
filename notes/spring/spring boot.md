@@ -249,7 +249,7 @@ throws로 예외처리를 해주면 controller에서 모아서 잡아줌(try, ca
 ** 작성 순서**
 Dto -> Controller -> Service(service interface, service class) -> Mapper
 
-## 💡에러
+## 💡에러 해결
 
 ❗`Identify and stop the process that's listening on port 8080` 에러
 
