@@ -251,6 +251,12 @@ Dto -> Controller -> Service(service interface, service class) -> Mapper
 
 ### SecurityConfig 설정
 - @EnableWebSecurity: 웹보안 활성화를 위한 annotation, WebSecurityconfigureAdapter를 상속하는 설정 객체에 붙혀주면 SpringSecurityFilterChain에 등록된다.
+- Form Login 인증
+  1. Client에서 Get 방식으로 Home Url 자원접근 요청
+  2. Server에서는 인증된 사용자만 접근가능하다고 판단해 인증이 안되면 로그인 페이지로 리다이렉트
+  3. Client는 로그인페이지의 username/password 입력하여 Post 방식으로 인증 시도
+  4. Server에서는 Session ID 생성후 인증결과를 담은 인증 토큰(Authentication) 생성 및 저장
+  5. Client에서 /home 접근요청 시 세션에 저장된 인증 토큰으로 접근 및 인증 유지
 
 
 ## 💡에러 해결
