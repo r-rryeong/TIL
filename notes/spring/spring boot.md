@@ -258,6 +258,13 @@ Dto -> Controller -> Service(service interface, service class) -> Mapper
   4. Server에서는 Session ID 생성후 인증결과를 담은 인증 토큰(Authentication) 생성 및 저장
   5. Client에서 /home 접근요청 시 세션에 저장된 인증 토큰으로 접근 및 인증 유지
 
+### Spring Security와 JWT
+- UsernamePasswordAuthenticationFilter 특징
+1. 필터를 거치고 다음 필터로 동작을 넘기지 않는다. 인증 성공 여부에 따른 메서드 successfulAuthentication/unSuccessfulAuthentication를 구현해야하는 이유이다.
+2. 해당 필터는 login에 접근할 때만 동작한다. 그렇기 때문에 내가 원하는 Url에서 필터가 동작하길 원한다면 setFilterProcesseUrl()로 Url를 설정해줘야 작동한다.
+위와 같은 특징 때문에 Jwt 필터를 따로 만들어줘야 한다.
+
+
 
 ## 💡에러 해결
 
