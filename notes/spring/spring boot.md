@@ -259,11 +259,16 @@ Dto -> Controller -> Service(service interface, service class) -> Mapper
   5. Client에서 /home 접근요청 시 세션에 저장된 인증 토큰으로 접근 및 인증 유지
 
 ### Spring Security와 JWT
+> 참고
+https://velog.io/@chullll/Spring-Security-JWT-%ED%95%84%ED%84%B0-%EC%A0%81%EC%9A%A9-%EA%B3%BC%EC%A0%95
+
 - UsernamePasswordAuthenticationFilter 특징
 1. 필터를 거치고 다음 필터로 동작을 넘기지 않는다. 인증 성공 여부에 따른 메서드 successfulAuthentication/unSuccessfulAuthentication를 구현해야하는 이유이다.
 2. 해당 필터는 login에 접근할 때만 동작한다. 그렇기 때문에 내가 원하는 Url에서 필터가 동작하길 원한다면 setFilterProcesseUrl()로 Url를 설정해줘야 작동한다.
 위와 같은 특징 때문에 Jwt 필터를 따로 만들어줘야 한다.
 
+- JwtAuthorization(권한 부여)Filter가 로그인을 담당/토큰 발금을 진행하고 JwtAuthentication(인증)Filter는 토큰 인증을 담당한다.
+- Request Header에 담겨있는 JwtToken을 파싱해서 인증을 진행한다. 인증에 성공하면 SecurityContextHolder에 인증된 Authentication 객체를 집어 넣음으로써 인가한다.
 
 
 ## 💡에러 해결
