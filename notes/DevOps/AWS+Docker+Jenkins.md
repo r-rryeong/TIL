@@ -40,3 +40,52 @@ Docker Image: 사용자가 base image를 사용하여 그 위에 프로그램, �
 $ sudo usermod -aG docker $USER
 ```
 
+
+
+✔현재 호스트에 존재하는 Image 확인
+
+```
+$ docker images
+```
+
+❌특정 이미지 삭제
+
+```
+$ docker rmi [option] imagename [imagename... (여러 개 삭제 시) ]
+```
+
+🦼Container 생성
+
+```
+$ docker create [option] [imagename]:[tag]
+```
+
+
+
+✔Container 목록 확인
+
+(정지된 컨테이너 목록까지 확인하고 싶은 경우 -a 추가)
+
+```
+$ docker ps [옵션]
+```
+
+🛑Container 중지
+
+```
+$ docker stop [container name OR container ID]
+```
+
+❌Container 삭제(컨테이너가 중지된 상태여야 한다.)
+
+```
+# 컨테이너 이름 or ID로 중지
+$ docker rm [container name OR container ID]
+
+# 컨테이너 강제 삭제
+$ docker rm -f [container name OR container ID]
+
+# 모든 컨테이너 삭제
+$ docker container prune
+```
+
