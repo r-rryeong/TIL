@@ -91,3 +91,26 @@ $ docker rm -f [container name OR container ID]
 $ docker container prune
 ```
 
+
+
+### ❗에러
+
+1. Error: Could not find or load main class org.gradle.wrapper.GradleWrapperMain
+
+   ```
+   $ gradle wrap
+   ```
+
+   wrapper 폴더 내의 gradle-wrapper.jar, gradle-wrapper.properties를 지우고 다시 깔아준다.
+
+2. ```
+   Step 11/12 : COPY ./default.conf /etc/nginx/conf.d/default.conf
+   COPY failed: file not found in build context or excluded by .dockerignore: stat default.conf: file does not exist
+   ```
+
+   ```
+   # Dockerfile 수정
+   COPY --from=build-stage /app/build /usr/share/nginx/html
+   ```
+
+3. 
