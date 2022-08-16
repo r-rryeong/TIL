@@ -113,4 +113,11 @@ $ docker container prune
    COPY --from=build-stage /app/build /usr/share/nginx/html
    ```
 
-3. 
+
+
+-  도커에서 mariadb 컨테이너 접속하기
+
+  ```
+  ```
+
+  
