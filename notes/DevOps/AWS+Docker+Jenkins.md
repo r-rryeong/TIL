@@ -118,6 +118,17 @@ $ docker container prune
 -  도커에서 mariadb 컨테이너 접속하기
 
   ```
+  root@ip-172-26-4-241:~# docker exec -it 컨테이너이름 /bin/bash
   ```
-
   
+  ```
+  root@82c3e57121b7:/etc/mysql/setDB# mysql -u root -p
+  ```
+  
+  - 접속완료!
+  
+    ```
+    MariaDB [(none)]> SHOW DATABASES;
+    ```
+  
+    > MariaDB 문법 참고
