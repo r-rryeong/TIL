@@ -125,7 +125,7 @@ $ docker container prune
   root@82c3e57121b7:/etc/mysql/setDB# mysql -u root -p
   ```
   
-  - 접속완료!
+  - 접속완료
   
     ```
     MariaDB [(none)]> SHOW DATABASES;
