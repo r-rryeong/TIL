@@ -113,7 +113,20 @@ $ docker container prune
    COPY --from=build-stage /app/build /usr/share/nginx/html
    ```
 
+3. ```
+   java.sql.SQLException: Field 'email' doesn't have a default value
+   Query is: INSERT INTO imagination_playground.password
+               (user_id, password)
+           VALUES
+               (?, ?), parameters [9,'123456789a']
+   ```
 
+   ```
+   password 테이블에 email이 있는데 email값을 비워놔서 발생
+   ⇒ email 삭제
+   ```
+
+   
 
 -  도커에서 mariadb 컨테이너 접속하기
 
