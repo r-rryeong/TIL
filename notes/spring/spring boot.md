@@ -10,7 +10,8 @@ json 파일(Body)은 스네이크 케이스
 
 - alt + Enter: 수행할 action을 보여줌(import, replace,...)
 - ctrl + space: method 자동완성(arrow method)
-- 
+
+
 
 # 🌱TIL
 
@@ -19,6 +20,8 @@ json 파일(Body)은 스네이크 케이스
 - dependency
 
 - throws: 예외던지기
+
+
 
 ### API
 
@@ -44,6 +47,15 @@ json 파일(Body)은 스네이크 케이스
 
 - @JsonInclude(): null 이나 비어있는 필드를 표시하지 않을 수 있음
 
+
+
+- Mapping을 할 때 우리는 받고싶은 데이터를 강제함으로써 오류 상황을 줄일 수 있다. → MediaType
+  - consumes: 클라이언트가 서버에게 보내는 데이터 타입을 명시. 들어오는 데이터 타입을 정의할 때 사용
+  - produces: 서버가 클라이언트에게 반환하는 데이터 타입 명시
+- HttpServletRequest: 값을 받아온다. 어떤 데이터를 컨트롤러로 보냈을 때 HttpServletRequest 객체 안에 모든 데이터들이 들어간다. 원하는 데이터를 꺼낼 때 HttpServletRequest 객체 안의 메소드를 이용하면 된다.
+
+
+
 ### CRUD
 
 - GET: 리소스 취득, R
@@ -53,6 +65,8 @@ json 파일(Body)은 스네이크 케이스
 - PUT: 리소스 갱신, 생성, C / U
 
 - DELETE: 리소스 삭제, D
+
+
 
 ### AOP
 
@@ -75,6 +89,8 @@ json 파일(Body)은 스네이크 케이스
 - @Retention(): 해당 애노테이션이 언제까지 유지될 수 있는지 알려주는 애노테이션
 
 - Thread.sleep(): 실행 중인 스레드를 잠시 멈춘다
+
+
 
 ### object mapper
 
@@ -109,6 +125,8 @@ objectMapper.readValue(바꿀 변수명, 바꿀 타입);
 
 - convertValue: object를 원하는 type으로 바꿔서 파싱하기 위한 메서드
 
+
+
 ### Spring Boot Annotations
 
 | Annotation             | 의미                                             |
@@ -136,6 +154,8 @@ objectMapper.readValue(바꿀 변수명, 바꿀 타입);
 | @Around                | AOP 이전/이후 모두 포함 (예외 발생 포함)                     |
 | @AfterReturning        | AOP 메소드의 호출이 정상일 때 실행                          |
 | @AfterThrowing         | AOP시 해당 메소드가 예외 발생시 실행되도록 지정                   |
+
+
 
 ### Validation
 
@@ -176,11 +196,15 @@ objectMapper.readValue(바꿀 변수명, 바꿀 타입);
 - ResponseEntity: 사용자의 HttpRequest에 대한 응답 데이터를 포함하는 클래스(HttpStatus, HttpHeaders, HttpBody를 포함)
 - BindingResult: 검증 오류가 발생할 경우 오류 내용을 보관하는 객체
 
+
+
 ### Custom Validation
 
 1. AssertTrue / False와 같은 method 지정을 통해 Custom Logic 적용 가능
 2. ConstraintValidator를 적용하여 재사용이 가능한 Custom Logic 적용 가능
 - @Constraint: annotation을 Bean Validation Constraint로 만들어 주는 annotation
+
+
 
 ### Exception 처리
 
@@ -204,6 +228,8 @@ Web Application의 입장에서 바라보았을때, 에러가 났을 때 내려�
 
 - getRejectValue(): 필드 오류, 즉 특정 필드 값을 거부하는 이유를 캡슐화한다.
 
+
+
 ### Filter-Interceptor
 
 Filter란 Web Application에서 관리되는 영역으로써 Spring Boot Framework에서 Client로 부터 오는 요청/응답에 대해서 최초/최종 단계의 위치에 존재하며, 이를 통해서 요청/ 응답의 정보를 변경하거나, Spring에 의해서 데이터가 변환되기 전의 순수한 Client의 요청/ 응답 값을 확인할 수 있다.
@@ -225,13 +251,17 @@ Filter란 Web Application에서 관리되는 영역으로써 Spring Boot Framewo
   - Java thread를 통해 동작한다
   - MVC패턴 중 Controller로 이용된다
 
+
+
 ### DB
 
 - Optional: Optional<T>는 null이 올 수 있는 값을 감싸는 Wrapper 클래스
 
 - 추상 클래스: 추상 클래스란 말 그대로 추상적으로 밖에 그려지지 않은 클래스라고 한다. 즉, 클래스가 전체적인 구성을 다 가지지 못한 채 설계만 되어있는 클래스이다. 추상클래스로 인스턴스를 생성할 수 없다. 추상 클래스는 상속을 통해서 자식 클래스에 의해 완성이 된다. 그래서 추상 클래스는 자체로는 제 기능을 다하지는 못하지만, 새로운 기능을 정의하는데 있어서 바탕이 될 수 있다.
 
-### 0720 스터디
+
+
+### Java반 스터디
 
 > VueAPI 프로젝트 참고
 
@@ -246,8 +276,13 @@ ResponseEntity<?>나 ResponseEntity<Map<String, Object>> 나 같다.
 HttpSession: token을 가져올 때 사용
 
 throws로 예외처리를 해주면 controller에서 모아서 잡아줌(try, catch)
-** 작성 순서**
+
+
+
+**작성 순서**
 Dto -> Controller -> Service(service interface, service class) -> Mapper
+
+
 
 ### SecurityConfig 설정
 - @EnableWebSecurity: 웹보안 활성화를 위한 annotation, WebSecurityconfigureAdapter를 상속하는 설정 객체에 붙혀주면 SpringSecurityFilterChain에 등록된다.
@@ -257,6 +292,8 @@ Dto -> Controller -> Service(service interface, service class) -> Mapper
   3. Client는 로그인페이지의 username/password 입력하여 Post 방식으로 인증 시도
   4. Server에서는 Session ID 생성후 인증결과를 담은 인증 토큰(Authentication) 생성 및 저장
   5. Client에서 /home 접근요청 시 세션에 저장된 인증 토큰으로 접근 및 인증 유지
+
+
 
 ### Spring Security와 JWT
 > 참고
@@ -269,6 +306,8 @@ https://velog.io/@chullll/Spring-Security-JWT-%ED%95%84%ED%84%B0-%EC%A0%81%EC%9A
 
 - JwtAuthorization(권한 부여)Filter가 로그인을 담당/토큰 발금을 진행하고 JwtAuthentication(인증)Filter는 토큰 인증을 담당한다.
 - Request Header에 담겨있는 JwtToken을 파싱해서 인증을 진행한다. 인증에 성공하면 SecurityContextHolder에 인증된 Authentication 객체를 집어 넣음으로써 인가한다.
+
+
 
 
 ## 💡에러 해결
