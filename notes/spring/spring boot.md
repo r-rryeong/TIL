@@ -129,31 +129,32 @@ objectMapper.readValue(바꿀 변수명, 바꿀 타입);
 
 ### Spring Boot Annotations
 
-| Annotation             | 의미                                             |
-| ---------------------- | ---------------------------------------------- |
-| @SpringBootApplication | Spring boot application으로 설정                   |
-| @Controller            | View를 제공하는 controller로 설정                      |
-| @RestController        | REST API를 제공하는 controller로 설정                  |
-| @RequestMapping        | URL 주소를 맵핑(원하는 Http method 지정해야함)              |
-| @GetMapping            | Http GetMethod URL 주소 맵핑                       |
-| @PostMapping           | Http PostMethod URL 주소 맵핑                      |
-| @PutMapping            | Http PutMethod URL 주소 맵핑                       |
-| @DeleteMapping         | Http DeleteMethod URL 주소 맵핑                    |
-| @RequestParam          | URL Query Parameter 맵핑                         |
-| @RequestBody           | Http Body를 Parsing 맵핑                          |
-| @Valid                 | POJO Java class의 검증                            |
-| @Configration          | 1개 이상의 bean을 등록 할 때 설정                         |
-| @Component             | 1개의 Class 단위로 등록할 때 사용                         |
+| Annotation             | 의미                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| @SpringBootApplication | Spring boot application으로 설정                             |
+| @Controller            | View를 제공하는 controller로 설정                            |
+| @RestController        | REST API를 제공하는 controller로 설정                        |
+| @RequestMapping        | URL 주소를 맵핑(원하는 Http method 지정해야함)               |
+| @GetMapping            | Http GetMethod URL 주소 맵핑                                 |
+| @PostMapping           | Http PostMethod URL 주소 맵핑                                |
+| @PutMapping            | Http PutMethod URL 주소 맵핑                                 |
+| @DeleteMapping         | Http DeleteMethod URL 주소 맵핑                              |
+| @RequestParam          | URL Query Parameter 맵핑                                     |
+| @RequestBody           | Http Body를 Parsing 맵핑                                     |
+| @Valid                 | POJO Java class의 검증                                       |
+| @Configration          | 1개 이상의 bean을 등록 할 때 설정                            |
+| @Component             | 1개의 Class 단위로 등록할 때 사용                            |
 | @Bean                  | 1개의 외부 library로부터 생성한 객체를 등록 시 사용(Class에는 사용X) |
-| @AutoWired             | DI를 위한 곳에 사용                                   |
-| @Qualifier             | @AutoWired 사용시 bean이 2개 이상일 때 명시적으로 사용         |
-| @Resource              | @AutoWired + @Qualifier 의 개념으로 이해              |
-| @Aspect                | AOP 적용시 사용                                     |
-| @Before                | AOP 메소드 이전 호출 지정                               |
-| @After                 | AOP 메소드 호출 이후 지정 (예외 발생 포함)                    |
+| @AutoWired             | DI를 위한 곳에 사용                                          |
+| @Qualifier             | @AutoWired 사용시 bean이 2개 이상일 때 명시적으로 사용       |
+| @Resource              | @AutoWired + @Qualifier 의 개념으로 이해                     |
+| @Aspect                | AOP 적용시 사용                                              |
+| @Before                | AOP 메소드 이전 호출 지정                                    |
+| @After                 | AOP 메소드 호출 이후 지정 (예외 발생 포함)                   |
 | @Around                | AOP 이전/이후 모두 포함 (예외 발생 포함)                     |
-| @AfterReturning        | AOP 메소드의 호출이 정상일 때 실행                          |
-| @AfterThrowing         | AOP시 해당 메소드가 예외 발생시 실행되도록 지정                   |
+| @AfterReturning        | AOP 메소드의 호출이 정상일 때 실행                           |
+| @AfterThrowing         | AOP시 해당 메소드가 예외 발생시 실행되도록 지정              |
+| @NoArgsConstructor     | 파라미터가 없는 기본 생성자를 생성                           |
 
 
 
@@ -306,6 +307,18 @@ https://velog.io/@chullll/Spring-Security-JWT-%ED%95%84%ED%84%B0-%EC%A0%81%EC%9A
 
 - JwtAuthorization(권한 부여)Filter가 로그인을 담당/토큰 발금을 진행하고 JwtAuthentication(인증)Filter는 토큰 인증을 담당한다.
 - Request Header에 담겨있는 JwtToken을 파싱해서 인증을 진행한다. 인증에 성공하면 SecurityContextHolder에 인증된 Authentication 객체를 집어 넣음으로써 인가한다.
+
+> 참고
+>
+> https://00hongjun.github.io/spring-security/securitycontextholder/
+
+- Spring Security의 Authentication은 여러 Component로 구성되어 있으며, 이 Component 등이 서로 엮여 인증과 인가를 검증하게 된다. 주요 Component는 아래와 같다.
+  - SecurityContextHolder: 누가 인증했는지에 대한 정보를 저장하고 있다. SecurityContext를 포함하고 있다.
+  - SecurityContext: 인터페이스이며 현재 인증한 user에 대한 정보를 가지고 있다. get/set()이 정의되어 있다. Authentication을 포함하고 있다.
+  - Authentication: SecurityContext의 user, 인증 정보를 가지고 있으며, AuthenticationManager에 의해 인증된 pricipal 또는 token을 나타낸다.
+  - AuthenticationManager: Spring Security의 필터에서 인증을 수행하는 방법을 정의하는 API. `Authentication authenticate()`메서드 1개만 정의하고 있다. 반환된 인증은 SecurityContextHolder에 저장
+  - AuthenticationProvider: 인증 수행을 위해 ProviderManager에 의해 사용됩니다.
+  - ProviderManager: 특정 인증 유형을 확인할 수 있는 AuthenticationProvider의 providers list를 가지고 있다. list에 포함된 각각의 AuthenticationProvider는 인증 성공 여부를 반환하는 역할을 한다.
 
 
 
