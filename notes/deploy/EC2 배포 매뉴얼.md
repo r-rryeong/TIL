@@ -3,7 +3,7 @@
 - SSH 연결
 
 ```
-$ ssh -i J7D203T.pem ubuntu@j7d203.p.ssafy.io
+$ ssh -i J7<팀ID>T.pem ubuntu@도메인
 ```
 
 Pem 파일이 있는 폴더에서 다음 명령어 입력 후 yes를 입력하면(초기 접속 시) 접속 완료
@@ -555,13 +555,13 @@ Nginx설정은 기존 React와 port가 분리되어 8443 port를 이용해야 �
   ```
   upstream backend{
   	ip_hash;
-  	server j7d203.p.ssafy.io:8443;
+  	server 도메인:8443;
   }
   
   server {
       listen 80;
       listen [::]:80;
-      server_name j7d203.p.ssafy.io;
+      server_name 도메인;
   
       access_log  /var/log/nginx/host.access.log  main;
   
