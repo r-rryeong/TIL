@@ -5,7 +5,7 @@ https://www.dongyeon1201.kr/c20f7d07-6f23-4134-ae8e-e730dc7b5af6
 
 ```
 # 공개키 기반 인증 SSH 접속
-ssh -i "개인키 경로" USER@IP
+ssh -i <개인키 경로> USER@IP
 ```
 
 
@@ -30,7 +30,7 @@ Docker Image: 사용자가 base image를 사용하여 그 위에 프로그램, �
 
 
 
-👩‍💻현재 사용자 docker 명령어 사용 허용
+- 현재 사용자 docker 명령어 사용 허용
 
 기본적으로 root 권한을 사용하여(sudo 명령어) docker 명령어를 사용해야한다.
 
@@ -44,19 +44,19 @@ $ sudo usermod -aG docker $USER
 
 
 
-✔현재 호스트에 존재하는 Image 확인
+- 현재 호스트에 존재하는 Image 확인
 
 ```
 $ docker images
 ```
 
-❌특정 이미지 삭제
+- 특정 이미지 삭제
 
 ```
 $ docker rmi [option] imagename [imagename... (여러 개 삭제 시) ]
 ```
 
-🦼Container 생성
+- Container 생성
 
 ```
 $ docker create [option] [imagename]:[tag]
@@ -64,7 +64,7 @@ $ docker create [option] [imagename]:[tag]
 
 
 
-✔Container 목록 확인
+- Container 목록 확인
 
 (정지된 컨테이너 목록까지 확인하고 싶은 경우 -a 추가)
 
@@ -72,13 +72,13 @@ $ docker create [option] [imagename]:[tag]
 $ docker ps [옵션]
 ```
 
-🛑Container 중지
+- Container 중지
 
 ```
 $ docker stop [container name OR container ID]
 ```
 
-❌Container 삭제(컨테이너가 중지된 상태여야 한다.)
+- Container 삭제(컨테이너가 중지된 상태여야 한다.)
 
 ```
 # 컨테이너 이름 or ID로 중지
