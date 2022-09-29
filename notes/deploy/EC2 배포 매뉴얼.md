@@ -722,6 +722,16 @@ Nginx설정은 기존 React와 포트가 분리되어 8443 포트를 이용해�
   
   
   
+  ```
+  $ /etc/nginx/sites-available
+  $  sudo vi fe.conf
+  ```
+  
+  ```
+  # 영상 파일 크기
+  $ client_max_body_size 5M;
+  ```
+  
   
 
 
