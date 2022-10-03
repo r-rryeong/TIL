@@ -551,56 +551,6 @@ Nginx설정은 기존 React와 포트가 분리되어 8443 포트를 이용해�
   <br/>
 
   ```
-  upstream backend{
-  	ip_hash;
-  	server 172.31.62.140:8080;
-  }
-  
-  server {
-      listen       80;
-      listen  [::]:80;
-      server_name  localhost;
-  
-      #access_log  /var/log/nginx/host.access.log  main;
-  
-      location / {
-          root   /usr/share/nginx/html;
-          index  index.html index.htm;
-      }
-  
-  	location /api {
-          proxy_pass http://backend/;
-          proxy_redirect     off;
-          proxy_set_header   Host $host;
-          proxy_set_header   X-Real-IP $remote_addr;
-          proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-      }
-  
-      error_page   500 502 503 504  /50x.html;
-      location = /50x.html {
-          root   /usr/share/nginx/html;
-      }
-  
-  }
-  ```
-  
-  ```
-  # FRONT/nginx/nginx.conf
-  
-  server {
-      listen 80;
-      
-      location / {
-  		root /usr/share/nginx/html;
-  		index index.html index.htm;
-  		try_files $uri $uri/ /index.html;
-      }
-  }
-  ```
-  
-  
-  
-  ```
   # /etc/nginx/sites-available/default
   
   ##
@@ -650,9 +600,10 @@ Nginx설정은 기존 React와 포트가 분리되어 8443 포트를 이용해�
           server_name _;
   
           location / {
-                  # First attempt to serve request as file, then
-                  # as directory, then fall back to displaying a 404.
-                  try_files $uri $uri/ =404;
+                  proxy_pass http://localhost:3000;
+          }
+          location / {
+                  proxy_pass http://localhost:8443;
           }
   
           # pass PHP scripts to FastCGI server
@@ -695,21 +646,17 @@ Nginx설정은 기존 React와 포트가 분리되어 8443 포트를 이용해�
   ```
   
   ```
-  $ sudo rm /etc/nginx/sites-available/default
-  $ sudo rm /etc/nginx/sites-enabled/default
-  ```
-  
-  ```
   # /etc/nginx/sites-available/fe.conf
   
   server {
+  		listen 80;
   		
           location / {
-                  proxy_pass http://도메인:3000;
+                  proxy_pass http://localhost:3000;
           }
   
           location /api {
-                  proxy_pass http://도메인:8443;
+                  proxy_pass http://localhost:8443;
           }
   }
   ```
@@ -720,15 +667,8 @@ Nginx설정은 기존 React와 포트가 분리되어 8443 포트를 이용해�
   $ systemctl status nginx.service
   ```
   
-  
-  
   ```
-  $ /etc/nginx/sites-available
-  $  sudo vi fe.conf
-  ```
-  
-  ```
-  # 영상 파일 크기
+  # 영상 파일 크기 설정
   $ client_max_body_size 5M;
   ```
   
