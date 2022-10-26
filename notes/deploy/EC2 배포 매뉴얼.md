@@ -359,7 +359,7 @@ $ sudo docker exec -it jenkins bash
 
   ```
   #backend/Dockerfile
-  FROM openjdk:11 as builder
+  FROM openjdk:8 as builder
   COPY gradlew .
   COPY gradle gradle
   COPY build.gradle .
@@ -370,7 +370,7 @@ $ sudo docker exec -it jenkins bash
   
   VOLUME /tmp
   
-  FROM openjdk:11
+  FROM openjdk:8
   COPY --from=builder build/libs/*.jar app.jar
   
   EXPOSE 8080
