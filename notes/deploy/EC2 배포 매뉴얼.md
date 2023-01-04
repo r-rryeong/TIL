@@ -18,7 +18,7 @@ Pem 파일이 있는 폴더에서 다음 명령어 입력 후 yes를 입력하�
   $ sudo apt update
   $ sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
   ```
-
+ 
 - GPG Key 인증
 
   ```
