@@ -1,3 +1,11 @@
+## Spring 소개
+
+- Model2 Architecture : MVC Pattern
+- Spring Web MVC : 기존 Servlet의 요청 분석, client 데이터 추출, 결과 페이지 이동 역할 수행
+- Spring DI(Dependency )
+
+
+
 ## Container
 
 - 스프링은 자바 객체를 담고 있는 컨테이너
