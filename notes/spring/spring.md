@@ -2,7 +2,19 @@
 
 - Model2 Architecture : MVC Pattern
 - Spring Web MVC : 기존 Servlet의 요청 분석, client 데이터 추출, 결과 페이지 이동 역할 수행
-- Spring DI(Dependency )
+- Spring DI(Dependency Injection) : 객체 생성, 연동 역할 수행(factory 기능 포함)
+- IoC(Inversion of Control;제어의 반전) : 제어를 개발자가 아닌 framework가 수행
+- View Resolver : View 선택 역할 수행
+- DB 연동 framework
+  - Spring jdbc
+  - MyBatis : sql 쿼리 생성 단계를 따로 빼서 query.xml 파일에서 수행
+  - JPA
+- Spring Framework의 장점
+  - web을 자동화, 빠르게 개발 가능
+  - 라이브러리가 쪼개져있어서 가볍게 사용할 수 있다.(경량 컨테이너)
+  - Spring DI로 인해서 coupling이 낮아졌다. 유지보수성, 확장성 증가
+- Spring Framework의 단점
+  - 학습 필요, 시간 소요
 
 
 
@@ -21,6 +33,8 @@
   - 비즈니스 로직 외 부가적인 기능들이 독립적으로 관리되도록 하기 위함
   - 서비스 look up이나 Configuration에 대한 일관성을 갖기 위함
   - 서비스 객체를 사용하기 위해 개발자가 직접 Factory 또는 Singleton 패턴을 직접 구현하지 않아도 됨
+
+
 
 ## Spring Framework 구조
 
@@ -56,6 +70,8 @@
 
 - Mybatis 관련
 - @tranjection
+
+
 
 ## Spring MVC 모델
 
